@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="so"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0E5C4A"><title>Shaqo — East Africa</title>
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png">
+<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Shaqo"><meta name="apple-mobile-web-app-status-bar-style" content="default">
+<style>
+:root{--bg:#F7F8F5;--card:#fff;--card2:#FAFBF8;--ink:#0F1A17;--mut:#5A6862;--line:#E5E9E2;--line2:#D4DAD0;--ac:#0E5C4A;--ac2:#157A62;--ac3:#1FA88B;--acink:#fff;--gold:#B8860B;--red:#C62828;--redbg:#FEECEC;--amber:#B85C00;--amberbg:#FFF7EC;--blue:#1E5FA8;--bluebg:#EAF1FA;--green:#1F7A3B;--greenbg:#E8F5EC;--purple:#6B3FA0;--purplebg:#F2EAFA;--shadow-sm:0 1px 2px rgba(15,26,23,.04);--shadow:0 1px 3px rgba(15,26,23,.06),0 4px 16px rgba(15,26,23,.04);--shadow-lg:0 8px 32px rgba(15,26,23,.10);color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B1210;--card:#1A211D;--card2:#1F2723;--ink:#EAF2EE;--mut:#9AACA3;--line:#2A332E;--line2:#3A4540;--ac:#4FB89D;--ac2:#5FC9AE;--ac3:#7DDCB8;--acink:#08130F;--gold:#E5B84B;--red:#FF8A80;--redbg:#2A1414;--amber:#FFB74D;--amberbg:#2A1F10;--blue:#6BA3E8;--bluebg:#0F1F33;--green:#6FCF97;--greenbg:#0F2618;--purple:#B794E0;--purplebg:#231830;--shadow-sm:0 1px 2px rgba(0,0,0,.2);--shadow:0 1px 3px rgba(0,0,0,.3),0 4px 16px rgba(0,0,0,.2);--shadow-lg:0 8px 32px rgba(0,0,0,.4);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0B1210;--card:#1A211D;--card2:#1F2723;--ink:#EAF2EE;--mut:#9AACA3;--line:#2A332E;--line2:#3A4540;--ac:#4FB89D;--ac2:#5FC9AE;--ac3:#7DDCB8;--acink:#08130F;--gold:#E5B84B;--red:#FF8A80;--redbg:#2A1414;--amber:#FFB74D;--amberbg:#2A1F10;--blue:#6BA3E8;--bluebg:#0F1F33;--green:#6FCF97;--greenbg:#0F2618;--purple:#B794E0;--purplebg:#231830;--shadow-sm:0 1px 2px rgba(0,0,0,.2);--shadow:0 1px 3px rgba(0,0,0,.3),0 4px 16px rgba(0,0,0,.2);--shadow-lg:0 8px 32px rgba(0,0,0,.4);color-scheme:dark}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;padding-bottom:calc(140px + env(safe-area-inset-bottom,0px));overflow-x:hidden;-webkit-font-smoothing:antialiased}
+header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;max-width:1140px;margin:0 auto}
+.brand{font-size:26px;font-weight:900;background:linear-gradient(135deg,var(--ac),var(--ac2),var(--ac3));background-size:200% 200%;animation:gradientMove 5s ease infinite;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-.7px}
+@keyframes gradientMove{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+#lg{width:auto;min-height:40px;padding:8px 14px;border-radius:11px;font-size:13px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;font-weight:600}
+nav{position:fixed;left:14px;right:14px;bottom:calc(12px + env(safe-area-inset-bottom,0px));display:flex;gap:4px;overflow-x:auto;background:var(--card);border:1px solid var(--line);padding:8px;z-index:50;box-shadow:var(--shadow-lg);border-radius:22px;backdrop-filter:blur(20px);scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav button{flex:none;background:none;border:0;color:var(--mut);font:inherit;font-size:13px;font-weight:600;padding:10px 14px;min-height:44px;border-radius:14px;cursor:pointer;white-space:nowrap;transition:all .2s ease}
+nav button.on{color:var(--acink);background:linear-gradient(135deg,var(--ac),var(--ac2));font-weight:700;box-shadow:0 4px 12px rgba(14,92,74,.35)}
+main{max-width:1140px;margin:0 auto;padding:0 20px 24px}
+h2{margin:16px 0 14px;font-size:20px;font-weight:800;letter-spacing:-.2px}h3{font-size:15px;margin:20px 0 10px;font-weight:700}
+.page-header{margin-bottom:22px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.page-title{font-size:26px;font-weight:900;margin:0;letter-spacing:-.6px;line-height:1.2}
+.page-sub{font-size:13px;color:var(--mut);margin:6px 0 0;font-weight:500}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:12px;box-shadow:var(--shadow-sm)}
+.warn{background:var(--amberbg);border:1px solid rgba(184,92,0,.3);border-radius:14px;padding:14px 16px;margin-bottom:12px;position:relative}
+.warn::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--amber);border-radius:14px 0 0 14px}
+.warn.danger{background:var(--redbg);border-color:rgba(198,40,40,.3)}.warn.danger::before{background:var(--red)}
+.warn.success{background:var(--greenbg);border-color:rgba(31,122,59,.3)}.warn.success::before{background:var(--green)}
+.warn b{color:var(--amber);font-weight:700}.warn.danger b{color:var(--red)}.warn.success b{color:var(--green)}
+.warn ul{margin:8px 0 0;padding-left:20px}.warn li{margin:6px 0;font-size:13px;line-height:1.5}
+.row{display:flex;gap:10px;align-items:center}.wrap{flex-wrap:wrap}.sp{justify-content:space-between}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
+.av{width:60px;height:60px;border-radius:50%;object-fit:cover;flex:none;background:var(--line);border:2px solid var(--card)}
+.pv{width:76px;height:76px;object-fit:cover;border-radius:12px;margin:8px 4px 0 0;border:1px solid var(--line)}
+.s{font-size:12px;color:var(--mut);line-height:1.5}
+.tag{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;border:1px solid var(--line);border-radius:16px;padding:3px 9px;margin:4px 4px 0 0;color:var(--mut);background:var(--card2);line-height:1.4}
+.tag.g{border-color:var(--ac);color:var(--ac);background:rgba(14,92,74,.06)}
+.tag.r{border-color:var(--red);color:var(--red);background:rgba(198,40,40,.06)}
+.tag.b{border-color:var(--blue);color:var(--blue);background:rgba(30,95,168,.06)}
+button.p,button.d{border:0;border-radius:12px;padding:12px 18px;min-height:48px;font:inherit;font-weight:700;font-size:14px;cursor:pointer;background:linear-gradient(135deg,var(--ac),var(--ac2));color:var(--acink);box-shadow:0 4px 12px rgba(14,92,74,.22);transition:transform .15s}
+button.p:active,button.d:active{transform:scale(.97)}
+button.d{background:linear-gradient(135deg,var(--red),#A01E1E)}
+button.o{background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:12px;padding:10px 16px;min-height:44px;font:inherit;font-weight:600;font-size:14px;cursor:pointer;transition:all .15s}
+button.o:hover{border-color:var(--ac);color:var(--ac);background:var(--card2)}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:20px;padding:9px 15px;min-height:40px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s;white-space:nowrap}
+.chip:hover{border-color:var(--ac)}
+.chip.on{background:linear-gradient(135deg,var(--ac),var(--ac2));color:var(--acink);border-color:transparent;box-shadow:0 2px 8px rgba(14,92,74,.25)}
+.fv{background:none;border:0;font-size:24px;min-width:44px;min-height:44px;cursor:pointer;color:var(--red);transition:transform .15s}
+.fv:hover{transform:scale(1.15)}
+input,select,textarea{width:100%;font:inherit;padding:12px 14px;border:1px solid var(--line);border-radius:11px;background:var(--card);color:var(--ink);min-height:48px;transition:border-color .15s,box-shadow .15s;font-size:14px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ac);box-shadow:0 0 0 3px rgba(14,92,74,.1)}
+input[style*="display:none"]{display:none!important}
+.fl select,.fl input{width:auto}
+label{display:block;font-size:12px;font-weight:700;color:var(--mut);margin:14px 0 6px;text-transform:uppercase;letter-spacing:.4px}
+label.ck{display:flex;gap:10px;align-items:flex-start;color:var(--ink);font-size:14px;margin:10px 0;cursor:pointer;line-height:1.4;text-transform:none;letter-spacing:0}
+label.ck input{width:20px;height:20px;min-height:20px;flex:none;margin-top:1px;accent-color:var(--ac);border-radius:6px}
+.form-section{border-top:1px solid var(--line);padding-top:18px;margin-top:18px}
+.form-section:first-child{border-top:0;padding-top:0;margin-top:0}
+.form-section h4{font-size:11px;font-weight:800;color:var(--ac);margin:0 0 14px;display:flex;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:.8px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:520px){.form-grid{grid-template-columns:1fr}}
+.filter-bar{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;box-shadow:var(--shadow-sm)}
+@media(max-width:520px){.filter-bar{grid-template-columns:1fr}}
+.filter-bar select{width:100%;min-height:44px;border-radius:10px;padding:8px 12px;font-weight:600;font-size:13px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.filter-bar select:disabled{opacity:.5;cursor:not-allowed}
+.filter-bar .other-input{margin-top:8px;grid-column:1/-1}
+#sos{position:fixed;right:16px;bottom:calc(90px + env(safe-area-inset-bottom,0px));z-index:40;border-radius:26px;padding:14px 22px;font-weight:800;font-size:14px;background:linear-gradient(135deg,#C62828,#8E1B1B);color:#fff;border:0;cursor:pointer;min-height:48px;box-shadow:0 6px 20px rgba(198,40,40,.4);animation:sosPulse 2s infinite;letter-spacing:.5px}
+@keyframes sosPulse{0%,100%{box-shadow:0 6px 20px rgba(198,40,40,.4)}50%{box-shadow:0 6px 28px rgba(198,40,40,.65)}}
+#modal{position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(6px);z-index:60;display:flex;align-items:flex-end;justify-content:center;animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+#modal[hidden]{display:none}
+#mb{background:var(--bg);width:100%;max-width:600px;max-height:92%;overflow:auto;border-radius:22px 22px 0 0;padding:22px 20px calc(22px + env(safe-area-inset-bottom,0px));animation:slideUp .3s cubic-bezier(.32,.72,0,1)}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+@media(min-width:760px){#modal{align-items:center}#mb{border-radius:22px}}
+#toast{position:fixed;left:50%;transform:translateX(-50%);top:calc(16px + env(safe-area-inset-top,0px));background:var(--ink);color:var(--bg);padding:12px 22px;border-radius:12px;z-index:80;font-size:14px;font-weight:600;max-width:90%;box-shadow:var(--shadow-lg)}
+#toast[hidden]{display:none}
+footer{text-align:center;margin:36px 0 20px;font-size:12px;color:var(--mut);line-height:1.8}
+footer a{color:var(--ac);text-decoration:none;font-weight:600}
+footer button{background:none;border:0;color:var(--ac);font:inherit;font-weight:600;cursor:pointer;padding:4px 8px;border-radius:6px;font-size:12px;margin:0 2px}
+footer button:hover{background:var(--card2)}
+.warn-banner{background:linear-gradient(135deg,var(--redbg),rgba(198,40,40,.04));border:1px solid rgba(198,40,40,.35);border-radius:14px;padding:13px 16px;margin-bottom:14px;font-size:13px;line-height:1.5;display:flex;gap:10px;align-items:center}
+.warn-banner b{color:var(--red);font-weight:700}
+.time-picker{display:inline-flex;align-items:center;gap:6px;width:100%}
+.time-picker select{width:auto;flex:1;min-height:48px;padding:10px 8px;font-size:14px;font-weight:700;text-align:center;cursor:pointer;border-radius:10px}
+.tp-sep{font-weight:900;color:var(--mut);padding:0 2px;font-size:16px}
+.welcome-hero{position:relative;border-radius:22px;overflow:hidden;margin-bottom:22px;height:220px;background:linear-gradient(135deg,var(--ac),var(--ac2));box-shadow:var(--shadow-lg)}
+.welcome-hero img{width:100%;height:100%;object-fit:cover;opacity:.45}
+.welcome-hero .wh-text{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#fff;text-align:center;padding:24px;background:linear-gradient(to top,rgba(0,0,0,.4),transparent 55%);z-index:1}
+.welcome-hero h1{font-size:42px;margin:0;font-weight:900;letter-spacing:-1.5px;text-shadow:0 4px 24px rgba(0,0,0,.5)}
+.welcome-hero p{margin:10px 0 0;opacity:.98;font-size:14px;font-weight:600;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+.role-cards{display:grid;gap:14px;grid-template-columns:1fr 1fr;margin-bottom:24px}
+@media(max-width:420px){.role-cards{grid-template-columns:1fr}}
+.role-card{border:0;border-radius:20px;padding:28px 16px;cursor:pointer;text-align:center;color:#fff;position:relative;overflow:hidden;min-height:210px;display:flex;flex-direction:column;justify-content:center;align-items:center;box-shadow:var(--shadow-lg);transition:transform .2s ease}
+.role-card:active{transform:scale(.98)}
+.role-card.employer{background:linear-gradient(135deg,var(--blue),#0F3D73)}
+.role-card.worker{background:linear-gradient(135deg,#C2610D,#8A3F08)}
+.role-card .role-icon{font-size:54px;margin-bottom:10px;line-height:1;filter:drop-shadow(0 4px 8px rgba(0,0,0,.3))}
+.role-card h2{margin:0;font-size:20px;font-weight:900;color:#fff}
+.role-card p{margin:8px 0 0;font-size:12px;opacity:.95;line-height:1.4;font-weight:500}
+.role-card .arrow{margin-top:14px;font-size:20px;font-weight:700}
+.cat-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}
+.cat-card{border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;background:var(--card);text-align:left;padding:0;font:inherit;color:var(--ink);box-shadow:var(--shadow-sm);transition:all .2s ease}
+.cat-card:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--ac)}
+.cat-card img{width:100%;height:82px;object-fit:cover;display:block}
+.cat-card .cc-body{padding:10px 12px}
+.cat-card b{font-size:13px;display:block;font-weight:700;line-height:1.3}
+.cat-card .s{font-size:10px;margin-top:3px;color:var(--mut)}
+.role-pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:6px 12px;border-radius:18px;font-weight:700}
+.role-pill.employer{background:var(--bluebg);color:var(--blue)}
+.role-pill.worker{background:#FBF0E4;color:#8A3F08}
+.role-pill.guest{background:var(--greenbg);color:var(--green)}
+.promo-banner{background:linear-gradient(135deg,#B8860B 0%,#D4A017 25%,#FFD700 50%,#D4A017 75%,#B8860B 100%);background-size:200% 200%;animation:shimmerBg 4s linear infinite;border-radius:16px;padding:18px 20px;margin-bottom:22px;cursor:pointer;color:#1a1a1a;text-align:center;box-shadow:0 6px 20px rgba(184,134,11,.3);position:relative;overflow:hidden;border:0;width:100%;font:inherit}
+@keyframes shimmerBg{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+.promo-banner b{font-size:15px;font-weight:900;display:block;color:#0a1a10}
+.promo-banner span{font-size:12px;font-weight:700;display:block;margin-top:4px;color:#2a2a2a}
+.stars{display:inline-flex;gap:1px;color:var(--gold);font-size:13px}
+.stat-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 12px;text-align:center;box-shadow:var(--shadow-sm)}
+.stat-card .n{font-size:26px;font-weight:900;background:linear-gradient(135deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1}
+.stat-card .l{font-size:11px;color:var(--mut);font-weight:600;margin-top:4px;text-transform:uppercase;letter-spacing:.5px}
+.country-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(145px,1fr))}
+.country-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 12px;text-align:center;cursor:pointer;transition:all .2s;box-shadow:var(--shadow-sm)}
+.country-card:hover{border-color:var(--ac);transform:translateY(-2px);box-shadow:var(--shadow)}
+.country-card .flag{font-size:32px;line-height:1;display:block;margin-bottom:8px}
+.country-card b{display:block;font-size:13px;font-weight:700}
+.country-card .s{font-size:11px;margin-top:4px}
+.explanation-row{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:16px 0;font-size:12px;color:var(--mut);line-height:1.6}
+.explanation-row b{color:var(--ink);font-weight:700}
+#promoPopup{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;animation:fadeIn .35s ease}
+#promoPopup[hidden]{display:none}
+.promo-card{background:linear-gradient(135deg,#B8860B 0%,#D4A017 20%,#FFD700 40%,#FFED4E 50%,#FFD700 60%,#D4A017 80%,#B8860B 100%);background-size:300% 300%;animation:shimmerBg 3s linear infinite,promoPop .6s cubic-bezier(.34,1.56,.64,1);border-radius:24px;padding:36px 22px 26px;max-width:440px;width:100%;text-align:center;color:#1a1a1a;box-shadow:0 24px 80px rgba(184,134,11,.6);position:relative;overflow:hidden}
+@keyframes promoPop{0%{transform:scale(.4) rotate(-8deg);opacity:0}60%{transform:scale(1.08) rotate(3deg);opacity:1}100%{transform:scale(1) rotate(0);opacity:1}}
+.promo-close{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.25);color:#fff;border:0;width:36px;height:36px;border-radius:50%;font-size:22px;font-weight:700;cursor:pointer;z-index:10;line-height:1}
+.promo-emoji{font-size:68px;animation:promoBounce 1.2s ease-in-out infinite;display:inline-block;position:relative;z-index:2;line-height:1}
+@keyframes promoBounce{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-12px) scale(1.1)}}
+.promo-card h2{font-size:24px;font-weight:900;margin:12px 0 8px;color:#0a1a10;position:relative;z-index:2;line-height:1.2}
+.promo-tagline{font-size:14px;font-weight:800;color:#1a1a1a;margin:10px 0;position:relative;z-index:2}
+.promo-card p{font-size:13px;line-height:1.6;margin:12px 0;color:#1a1a1a;position:relative;z-index:2;font-weight:500}
+.promo-cta-text{font-size:16px;font-weight:900;color:#0a1a10;margin:14px 0!important;position:relative;z-index:2}
+.promo-cta{background:linear-gradient(135deg,#0E5C4A,#1F7A3B);color:#fff;border:0;padding:16px 22px;border-radius:14px;font-size:14px;font-weight:900;cursor:pointer;width:100%;margin-top:12px;box-shadow:0 8px 24px rgba(14,92,74,.5);position:relative;z-index:2;animation:promoCta 2s ease-in-out infinite;line-height:1.35}
+@keyframes promoCta{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+.promo-coin{position:absolute;font-size:24px;animation:floatCoin 4s ease-in-out infinite;pointer-events:none;z-index:1}
+.promo-coin:nth-child(1){top:8%;left:8%;font-size:28px}
+.promo-coin:nth-child(2){top:15%;right:10%;animation-delay:.5s;font-size:22px}
+.promo-coin:nth-child(3){bottom:20%;left:12%;animation-delay:1s;font-size:20px}
+.promo-coin:nth-child(4){bottom:10%;right:14%;animation-delay:1.5s;font-size:26px}
+@keyframes floatCoin{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-18px) rotate(15deg)}50%{transform:translateY(-6px) rotate(-10deg)}75%{transform:translateY(-20px) rotate(8deg)}}
+
+/* Visual refinements: realistic photography, clearer registration cards, and health fields */
+.profile-intro{display:grid;grid-template-columns:118px minmax(0,1fr);gap:16px;align-items:center;padding:14px;margin:0 0 18px;border:1px solid var(--line);border-radius:16px;background:var(--card2);overflow:hidden}
+.profile-intro img{width:118px;height:108px;object-fit:cover;border-radius:12px;display:block;background:var(--line)}
+.profile-intro h3{margin:0 0 5px;color:var(--ink);font-size:16px;line-height:1.35}
+.profile-intro p{margin:0;color:var(--mut);font-size:12px;line-height:1.55}
+.profile-intro .profile-kicker{display:inline-flex;align-items:center;gap:5px;color:var(--ac);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;margin-bottom:5px}
+.health-panel{padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--card2)}
+.health-question{padding:0 0 14px;margin:0 0 14px;border-bottom:1px solid var(--line)}
+.health-question:last-of-type{border-bottom:0;margin-bottom:0}
+.health-question-title{font-size:14px;font-weight:750;line-height:1.5;margin:0 0 10px;color:var(--ink)}
+.health-options{display:flex;gap:10px;flex-wrap:wrap}
+.health-option{display:inline-flex;align-items:center;gap:8px;min-width:96px;padding:10px 13px;margin:0!important;border:1px solid var(--line);border-radius:11px;background:var(--card);color:var(--ink)!important;font-size:13px!important;font-weight:650!important;text-transform:none!important;letter-spacing:0!important;cursor:pointer}
+.health-option:has(input:checked){border-color:var(--ac);background:rgba(14,92,74,.08);box-shadow:0 0 0 1px var(--ac)}
+.health-option input{width:18px;height:18px;min-height:18px;margin:0;accent-color:var(--ac);flex:none}
+.health-details{margin-top:14px;padding-top:14px;border-top:1px dashed var(--line2)}
+.health-details[hidden]{display:none!important}
+.health-details label{margin-top:0;text-transform:none;letter-spacing:0;font-size:13px;color:var(--ink)}
+.health-note{display:flex;gap:9px;align-items:flex-start;padding:10px 12px;border-radius:10px;background:var(--bluebg);color:var(--blue);font-size:11px;line-height:1.5;margin-top:13px}
+.av{box-shadow:0 2px 9px rgba(15,26,23,.10)}
+.cat-card img{transition:transform .35s ease}
+.cat-card:hover img{transform:scale(1.04)}
+@media(max-width:420px){.profile-intro{grid-template-columns:88px minmax(0,1fr);gap:12px;padding:11px}.profile-intro img{width:88px;height:94px}.profile-intro h3{font-size:14px}}
+
+
+#inst{min-height:40px;padding:8px 12px;border-radius:11px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:13px;font-weight:700;cursor:pointer}
+@media(min-width:900px){nav{position:sticky;top:8px;left:auto;right:auto;bottom:auto;width:calc(100% - 40px);max-width:1100px;margin:0 auto 14px;box-shadow:var(--shadow)}body{padding-bottom:48px}#sos{bottom:24px}}
+@media(display-mode:standalone){body{overscroll-behavior-y:contain}}
+</style></head><body>
+<header><span class="brand" id="brandEl">Shaqo</span><span class="row"><button id="inst" hidden>📲 App</button><select id="lg" onchange="setL(this.value)"><option value="0">Soomaali</option><option value="1">English</option><option value="2">Kiswahili</option><option value="3">Français</option><option value="4">አማርኛ</option></select></span></header>
+<nav id="nav"></nav><main id="app"></main>
+<button id="sos" onclick="sosOpen()">🚨 SOS</button>
+<div id="modal" hidden><div id="mb"></div></div><div id="toast" hidden></div>
+<div id="promoPopup" hidden>
+  <div class="promo-card">
+    <button class="promo-close" onclick="closePromo()">×</button>
+    <span class="promo-coin">💰</span><span class="promo-coin">💵</span><span class="promo-coin">🪙</span><span class="promo-coin">💎</span>
+    <div class="promo-emoji">💰</div>
+    <h2 id="promoTitle">WAQTIGAAGA LACAG KA SAMEE!</h2>
+    <div class="promo-tagline" id="promoT1">⏰ Waqtiyada iyo maalmaha aad firaaqada leedahay, ka faa'iidayso!</div>
+    <p id="promoT2">💡 <b>Xirfaddaada, aqoontaada iyo dadaalkaaga lacag ka samee.</b></p>
+    <div class="promo-cta-text" id="promoT3">🚀 Firaaqadaadu waa fursad, ka dhig il dakhli!</div>
+    <button class="promo-cta" id="promoT4" onclick="promoCtaClick()">👉 Isdiiwaangeli maanta, xirfaddaadana lacag ka samee!</button>
+  </div>
+</div>
+<script>
+// =============================================================
+// SECTION 1: CONSTANTS
+// =============================================================
+const CATS=["Nadaafad","Farsamo","IT","Koronto","Biyo","Delivery","TV-Dayactir","Mobile-Dayactir","Macalin","Waxbarasho","Guryaha","Xamaali","Darawal","Caafimaad","Engineer","Beeraha","Lataliye","Qareen","Xisaabiye","Beauty","Events","Marketing","Fitness","Wax kale"];
+const LIC=["Caafimaad","Engineer","Lataliye","Qareen"];
+const DAYS=["Sabti","Axad","Isniin","Salaasa","Arbaco","Khamiis","Jimce"];
+const BT=["A+","A-","B+","B-","O+","O-","AB+","AB-"];
+const ORG=["Qof","Shirkad","Hay’ad"];
+const DURATIONS=["1 saacad","2 saacadood","3 saacadood","4 saacadood","Maalin dhan","2 maalmood","Toddobaad"];
+const HOURS=[12,1,2,3,4,5,6,7,8,9,10,11],MINUTES=[0,15,30,45];
+
+// =============================================================
+// SECTION 2: EAST AFRICA — DALAL & MAGAALOOYIN
+// ✅ MUQDISHO DEGMOOYIN LA TIRTIRAY — kaliya "Muqdisho"
+// =============================================================
+const COUNTRY_FLAGS={"Soomaaliya":"🇸🇴","Kenya":"🇰🇪","Itoobiya":"🇪🇹","Jabuuti":"🇩🇯","Tanzania":"🇹🇿","Uganda":"🇺🇬"};
+const COUNTRIES=["Soomaaliya","Kenya","Itoobiya","Jabuuti","Tanzania","Uganda"];
+const AREAS_BY_COUNTRY={
+"Soomaaliya":["Muqdisho","Hargeysa","Boosaaso","Kismaayo","Baydhabo","Beledweyne","Garowe","Galkayo"],
+"Kenya":["Nairobi – Eastleigh","Nairobi – South C","Nairobi – Kasarani","Mombasa","Nakuru","Garissa","Mandera","Wajir","Dadaab","Kakuma"],
+"Itoobiya":["Addis Ababa","Harar","Dire Dawa","Jigjiga","Degehabur","Kebri Dahar","Gode","Kebri Beyah","Shilavo","Kelafo","Werder","Shinile","Adama","Hawassa","Mekelle","Bahir Dar"],
+"Jabuuti":["Djibouti City","Balbala","Ali Sabieh","Dikhil","Tadjoura","Obock"],
+"Tanzania":["Dar es Salaam","Dodoma","Arusha","Zanzibar"],
+"Uganda":["Kampala","Entebbe"]
+};
+function countryOfArea(a){for(const c of COUNTRIES){if((AREAS_BY_COUNTRY[c]||[]).includes(a))return c}return ""}
+
+// =============================================================
+// SECTION 3: IMAGES
+// =============================================================
+const CAT_IMG={"Nadaafad":"https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400&h=300&fit=crop","Farsamo":"https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&h=300&fit=crop","IT":"https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=300&fit=crop","Koronto":"https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=400&h=300&fit=crop","Biyo":"https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=400&h=300&fit=crop","Delivery":"https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=400&h=300&fit=crop","TV-Dayactir":"https://images.unsplash.com/photo-1593784991095-a205069470b6?w=400&h=300&fit=crop","Mobile-Dayactir":"https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=300&fit=crop","Macalin":"https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=300&fit=crop","Waxbarasho":"https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=400&h=300&fit=crop","Guryaha":"https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&h=300&fit=crop","Xamaali":"https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=300&fit=crop","Darawal":"https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop","Caafimaad":"https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=300&fit=crop","Engineer":"https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop","Beeraha":"https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=400&h=300&fit=crop","Lataliye":"https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop","Qareen":"https://images.unsplash.com/photo-1589994965851-a8f479c573a9?w=400&h=300&fit=crop","Xisaabiye":"https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop","Beauty":"https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400&h=300&fit=crop","Events":"https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=400&h=300&fit=crop","Marketing":"https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop","Fitness":"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&h=300&fit=crop","Wax kale":"https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=400&h=300&fit=crop"};
+const HERO_IMG="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&h=400&fit=crop";
+
+// =============================================================
+// SECTION 4: TITLES
+// =============================================================
+const TITLES={Xamaali:[["Xamaali","Xamaaliyad"],["Deked-Xamaali","Deked-Xamaaliyad"],["Dhisme-Xamaali","Dhisme-Xamaaliyad"],["Suuq-Xamaali","Suuq-Xamaaliyad"],["Guri rare","Guri rarto"],["Wax-Qaade","Wax-Qaado"],["Biyo-Qaade","Biyo-Qaado"],["Alaab-Qaade","Alaab-Qaado"]],Nadaafad:[["Nadiifiye","Nadiifiso"],["Guri-Nadiifiye","Guri-Nadiifiso"],["Homemaid","Homemaid"],["Dhar-Dhaqe","Dhar-Dhaqdo"],["Cilaansaare","Cilaansaarto"],["Fadhi Dhaqe","Fadhi Dhaqdo"],["Qol-Nadiifiye","Qol-Nadiifiso"],["Jiko-Caawiye","Jiko-Caawiso"]],Darawal:[["Darawal","Darawalad"],["Baabuur-Wade","Baabuur-Wado"],["Bajaaj-Wade","Bajaaj-Wado"],["Mooto-Wade","Mooto-Wado"],["Xamuul-Wade","Xamuul-Wado"],["Taxi-Wade","Taxi-Wado"],["Bas-Wade","Bas-Wado"],["Gaarsiye","Gaarsiiso"]],Macalin:[["Macalin","Macalimad"],["Macalin Quraan","Macalimad Quraan"],["Macalin Xisaab","Macalimad Xisaab"],["Macalin Saynis","Macalimad Saynis"],["Macalin Ingiriis","Macalimad Ingiriis"],["Macalin Carabi","Macalimad Carabi"],["Macalin Af-Soomaali","Macalimad Af-Soomaali"],["Macalin Computer","Macalimad Computer"],["Macalin AI","Macalimad AI"],["Macalin Jimicsi","Macalimad Jimicsi"]],Beeraha:[["Beeryaqaan","Beeryaqaanad"],["Beer-Fal","Beer-Fasho"],["Beer-Maareeye","Beer-Maareyso"],["Xoolo-Dhaqe","Xoolo-Dhaqdo"],["Kalluumeyste","Kalluumeysato"],["Hilib-Qaade","Hilib-Qaado"]],Farsamo:[["Farsamoyaqaan","Farsamoyaqaanad"],["Farinjiteer-Yaqaan","Farinjiteer-Yaqaanad"],["Qasaalad-Yaqaan","Qasaalad-Yaqaanad"],["Cooker-Yaqaan","Cooker-Yaqaanad"],["AC-Yaqaan","AC-Yaqaanad"],["Rinjiile","Rinjiiladle"],["Nijaar","Nijaaradle"],["Alxanle","Alxanle"]],IT:[["Computer-Yaqaan","Computer-Yaqaanad"],["Software-Install","Software-Install"],["OS-Install","OS-Install"],["Virus-Removal","Virus-Removal"],["Data-Recovery","Data-Recovery"],["Network-Setup","Network-Setup"],["WiFi-Install","WiFi-Install"],["CCTV-Setup","CCTV-Setup"],["Web-Developer","Web-Developer"],["App-Developer","App-Developer"],["Cyber-Security","Cyber-Security"],["IT-Support","IT-Support"],["Printer-Fix","Printer-Fix"],["Cloud-Setup","Cloud-Setup"]],Koronto:[["Koronto-Yaqaan","Koronto-Yaqaanad"],["Solar-Yaqaan","Solar-Yaqaanad"],["Nal-Dhig","Nal-Dhig"],["Meter-Reader","Meter-Reader"],["Generator-Yaqaan","Generator-Yaqaanad"],["Inverter-Yaqaan","Inverter-Yaqaanad"]],Biyo:[["Tubiiste","Tubiisad"],["Biyo-Dhig","Biyo-Dhig"],["Biyo-Mareen","Biyo-Mareen"],["Water-Tank-Cleaner","Water-Tank-Cleaner"],["Biyo-Gaadiye","Biyo-Gaadiso"],["Pump-Yaqaan","Pump-Yaqaanad"]],Delivery:[["Delivery-Rider","Delivery-Rider"],["Courier","Courier"],["Gaarsiye","Gaarsiiso"],["Xamuul-Delivery","Xamuul-Delivery"],["Cunto-Gaarsiye","Cunto-Gaarsiso"],["Dukaan-Gaarsiye","Dukaan-Gaarsiso"]],"TV-Dayactir":[["TV-Yaqaan","TV-Yaqaanad"],["Screen-Replace","Screen-Replace"],["TV-Install","TV-Install"],["Satellite-Install","Satellite-Install"],["TV-Wall-Mount","TV-Wall-Mount"]],"Mobile-Dayactir":[["Mobile-Yaqaan","Mobile-Yaqaanad"],["Screen-Repair","Screen-Repair"],["Battery-Replace","Battery-Replace"],["Software-Fix","Software-Fix"],["Charging-Port-Fix","Charging-Port-Fix"],["Water-Damage-Fix","Water-Damage-Fix"]],Waxbarasho:[["Macalin-Online","Macalimad-Online"],["Tababar-Online","Tababar-Online"],["Imtixaan-Prep","Imtixaan-Prep"],["Luqad-Baris","Luqad-Baris"],["Computer-Tababar","Computer-Tababar"],["AI-Tababar","AI-Tababar"]],Guryaha:[["Ilmo-Haye","Ilmo-Hayso"],["Xanaaneyn-Waalid","Xanaaneyn-Waalid"],["Guri-Ilaliye","Guri-Ilaliso"],["Beer-Gure","Beer-Gurto"],["Cunto-Kariye","Cunto-Kariso"],["Compound-Manager","Compound-Manager"]],Caafimaad:[["Dhakhtar","Dhakhtarad"],["Kalkaaliye","Kalkaaliso"],["Umuliye","Umuliso"],["Farmashiiste","Farmashiiste"],["Shaybaariiste","Shaybaariisad"]],Engineer:[["Engineer","Engineerad"],["Civil-Engineer","Civil-Engineerad"],["Electrical-Engineer","Electrical-Engineerad"],["Software-Engineer","Software-Engineerad"],["Architect","Architectad"]],Lataliye:[["Lataliye","Lataliso"],["Ganacsi-Lataliye","Ganacsi-Lataliso"],["Dhaqaale-Lataliye","Dhaqaale-Lataliso"],["IT-Lataliye","IT-Lataliso"]],Qareen:[["Qareen","Qareenad"],["Legal-Advisor","Legal-Advisor"],["Contract-Review","Contract-Review"],["Family-Lawyer","Family-Lawyer"],["Business-Lawyer","Business-Lawyer"],["Notary-Public","Notary-Public"]],Xisaabiye:[["Xisaabiye","Xisaabiso"],["Accountant","Accountant"],["Tax-Advisor","Tax-Advisor"],["Bookkeeper","Bookkeeper"],["Auditor","Auditor"],["Payroll-Manager","Payroll-Manager"]],Beauty:[["Timo-Jare","Timo-Jarto"],["Makeup-Artist","Makeup-Artist"],["Henna-Artist","Henna-Artist"],["Manicure-Pedicure","Manicure-Pedicure"],["Facial-Specialist","Facial-Specialist"],["Bridal-Makeup","Bridal-Makeup"],["Hair-Stylist","Hair-Stylist"]],Events:[["Aroos-Planner","Aroos-Planner"],["Catering","Catering"],["Decoration","Decoration"],["DJ","DJ"],["Photographer","Photographer"],["Videographer","Videographer"],["Event-Manager","Event-Manager"]],Marketing:[["Social-Media-Manager","Social-Media-Manager"],["Ads-Manager","Ads-Manager"],["Content-Creator","Content-Creator"],["SEO-Expert","SEO-Expert"],["Brand-Manager","Brand-Manager"],["Copywriter","Copywriter"]],Fitness:[["Personal-Trainer","Personal-Trainer"],["Yoga-Instructor","Yoga-Instructor"],["Gym-Instructor","Gym-Instructor"],["Nutritionist","Nutritionist"],["Fitness-Coach","Fitness-Coach"],["Sports-Coach","Sports-Coach"]],"Wax kale":[["Cameraman","Camerawoman"],["Editor","Editorad"],["Graphic-Designer","Graphic-Designerad"],["Turjubaan","Turjubaanad"],["Waardiye","Waardiyeyso"],["Cashier","Cashierad"],["Cook","Cookad"],["Waiter","Waitarad"],["Pest-Control","Pest-Control"],["Car-Wash","Car-Wash"]]};
+
+// =============================================================
+// SECTION 5: TRANSLATIONS
+// =============================================================
+const T={"Shaqo":"Shaqo|Work|Kazi|Travail|ስራ","Hal-abuure":"Hal-abuure|Creator|Muundaji|Créateur|ፈጣሪ","Hel xirfadle, hel shaqo":"Hel xirfadle, hel shaqo|Find skilled workers, find work|Pata wafanyakazi, pata kazi|Trouvez des talents, trouvez un emploi|ባለሙያ ያግኙ፣ ስራ ያግኙ","Raadi":"Raadi|Search|Tafuta|Rechercher|ፈልግ","Shaqooyin":"Shaqooyin|Jobs|Kazi|Emplois|ስራዎች","Dalab shaqaale":"Dalab shaqaale|Hire|Omba wafanyakazi|Embaucher|ሰራተኛ ጠይቅ","Dalab shaqo":"Dalab shaqo|Apply|Omba kazi|Postuler|ስራ ፈላጊ","Dhiig":"Dhiig|Blood|Damu|Sang|ደም","Dalabyo":"Dalabyo|Requests|Maombi|Demandes|ጥያቄዎች","Digniin":"Digniin|Warnings|Maonyo|Avertissements|ማስጠንቀቂያ","Admin":"Admin|Admin|Msimamizi|Admin|አስተዳዳሪ","Bogga":"Bogga|Home|Nyumbani|Accueil|መነሻ","Dhammaan":"Dhammaan|All|Zote|Tout|ሁሉም","Nadaafad":"Nadaafad|Cleaning|Usafi|Nettoyage|ጽዳት","Farsamo":"Farsamo|Technical|Ufundi|Technique|ቴክኒክ","IT":"IT|IT|IT|Informatique|አይቲ","Koronto":"Koronto|Electricity|Umeme|Électricité|ኤሌክትሪክ","Biyo":"Biyo|Water|Maji|Eau|ውሃ","Delivery":"Delivery|Delivery|Uwasilishaji|Livraison|ማድረስ","TV-Dayactir":"TV-Dayactir|TV Repair|Ukarabati TV|Réparation TV|የቲቪ ጥገና","Mobile-Dayactir":"Mobile-Dayactir|Mobile Repair|Ukarabati Simu|Réparation Mobile|የሞባይል ጥገና","Macalin":"Macalin|Teacher|Mwalimu|Enseignant|መምህር","Waxbarasho":"Waxbarasho|Education|Elimu|Éducation|ትምህርት","Guryaha":"Guryaha|Home Care|Huduma Nyumbani|Services à domicile|የቤት አገልግሎቶች","Xamaali":"Xamaali|Labour|Vibarua|Manœuvre|ሸካሚ","Darawal":"Darawal|Driver|Dereva|Chauffeur|አሽከርካሪ","Caafimaad":"Caafimaad|Health|Afya|Santé|ጤና","Engineer":"Engineer|Engineer|Mhandisi|Ingénieur|ኢንጂነር","Beeraha":"Beeraha|Agriculture|Kilimo|Agriculture|እርሻ","Lataliye":"Lataliye|Consultant|Mshauri|Consultant|አማካሪ","Qareen":"Qareen|Lawyer|Wakili|Avocat|ጠበቃ","Xisaabiye":"Xisaabiye|Accountant|Mhasibu|Comptable|የሂሳብ ባለሙያ","Beauty":"Beauty|Beauty|Urembo|Beauté|ውበት","Events":"Events|Events|Matukio|Événements|ክስተቶች","Marketing":"Marketing|Marketing|Masoko|Marketing|ግብይት","Fitness":"Fitness|Fitness|Mazoezi|Fitness|አካላዊ ብቃት","Wax kale":"Wax kale|Other|Nyingine|Autre|ሌላ","Sabti":"Sabti|Sat|Jumamosi|Sam|ቅዳሜ","Axad":"Axad|Sun|Jumapili|Dim|እሁድ","Isniin":"Isniin|Mon|Jumatatu|Lun|ሰኞ","Salaasa":"Salaasa|Tue|Jumanne|Mar|ማክሰኞ","Arbaco":"Arbaco|Wed|Jumatano|Mer|ረቡዕ","Khamiis":"Khamiis|Thu|Alhamisi|Jeu|ሐሙስ","Jimce":"Jimce|Fri|Ijumaa|Ven|አርብ","Qof":"Qof|Person|Mtu|Particulier|ግለሰብ","Shirkad":"Shirkad|Company|Kampuni|Entreprise|ድርጅት","Hay’ad":"Hay’ad|Agency|Shirika|Organisation|ተቋም","1 saacad":"1 saacad|1 hour|Saa 1|1 heure|1 ሰዓት","2 saacadood":"2 saacadood|2 hours|Masaa 2|2 heures|2 ሰዓት","3 saacadood":"3 saacadood|3 hours|Masaa 3|3 heures|3 ሰዓት","4 saacadood":"4 saacadood|4 hours|Masaa 4|4 heures|4 ሰዓት","Maalin dhan":"Maalin dhan|Full day|Siku nzima|Journée|ሙሉ ቀን","2 maalmood":"2 maalmood|2 days|Siku 2|2 jours|2 ቀናት","Toddobaad":"Toddobaad|1 week|Wiki 1|1 semaine|1 ሳምንት","Ma aqaano":"Ma aqaano|Unknown|Sijui|Inconnu|አላውቅም","Magac":"Magac|Name|Jina|Nom|ስም","Telefoon":"Telefoon|Phone|Simu|Téléphone|ስልክ","Jinsi":"Jinsi|Gender|Jinsia|Genre|ጾታ","Lab":"Lab|Male|Mwanaume|Homme|ወንድ","Dheddig":"Dheddig|Female|Mwanamke|Femme|ሴት","Qaybta":"Qaybta|Category|Kundi|Catégorie|ምድብ","Xirfadda":"Xirfadda|Skill|Ujuzi|Compétence|ክህሎት","Goobta":"Goobta|Area|Eneo|Zone|አካባቢ","Online":"Online|Online|Mtandaoni|En ligne|በመስመር ላይ","Weekend":"Weekend|Weekend|Wikendi|Week-end|ቅዳሜና እሁድ","Guri":"Guri|Home|Nyumbani|Domicile|ቤት","Goob":"Goob|Site|Eneo|Site|ቦታ","Waqtiga":"Waqtiga|Time|Muda|Heure|ሰዓት","Maalinta":"Maalinta|Day|Siku|Jour|ቀን","Taariikh":"Taariikh|Date|Tarehe|Date|ቀን","Muddada":"Muddada|Duration|Muda|Durée|ቆይታ","Faahfaahin":"Faahfaahin|Notes|Maelezo|Notes|ማስታወሻ","Cinwaanka":"Cinwaanka|Address|Anwani|Adresse|አድራሻ","Sawirkaaga":"Sawirkaaga|Your photo|Picha yako|Votre photo|ፎቶዎ","OTP":"OTP|OTP|OTP|OTP|OTP","Khibrad (sano)":"Khibrad (sano)|Experience (years)|Uzoefu (miaka)|Expérience (ans)|ልምድ (ዓመታት)","Waqtiga shaqada":"Waqtiga shaqada|Working hours|Saa za kazi|Heures de travail|የስራ ሰዓቶች","Nooca dhiigaaga":"Nooca dhiigaaga|Your blood type|Aina ya damu|Votre groupe sanguin|የደም አይነት","Sawirka ID-gaaga":"Sawirka ID-gaaga|Your ID photo|Picha ya kitambulisho|Photo d'identité|የመታወቂያ ፎቶ","Shahaadada":"Shahaadada|Certificate|Cheti|Certificat|የምስክር ወረቀት","Magaca damiinka":"Magaca damiinka|Guarantor name|Jina la mdhamini|Nom du garant|የዋስትና ስም","Telefoonka damiinka":"Telefoonka damiinka|Guarantor phone|Simu ya mdhamini|Téléphone du garant|የዋስትና ስልክ","Xiriirka":"Xiriirka|Relationship|Uhusiano|Relation|ግንኙነት","Sawirka ID-ga damiinka":"Sawirka ID-ga damiinka|Guarantor ID|Kitambulisho cha mdhamini|Identité du garant|የዋስትና መታወቂያ","Fiiri & dalbo":"Fiiri & dalbo|View & book|Tazama & agiza|Voir & réserver|ተመልከት እና ያዝ","Dalbo hadda":"Dalbo hadda|Book now|Agiza sasa|Réserver|አሁን ያዝ","Xir":"Xir|Close|Funga|Fermer|ዝጋ","Diiwaangeli":"Diiwaangeli|Register|Jisajili|S'inscrire|ተመዝገብ","Codso":"Codso|Apply|Omba|Postuler|አመልክት","Waa hagaag":"Waa hagaag|OK|Sawa|OK|እሺ","Waan fahmay":"Waan fahmay|I understand|Naelewa|Je comprends|ተረድቻለሁ","Jooji":"Jooji|Cancel|Ghairi|Annuler|ሰርዝ","Ogolow":"Ogolow|Approve|Idhinisha|Approuver|አጽድቅ","Diid":"Diid|Reject|Kataa|Rejeter|ውድቅ","Beddel doorka":"Beddel doorka|Switch role|Badilisha jukumu|Changer de rôle|ሚና ቀይር","Report":"Report|Report|Ripoti|Signaler|ሪፖርት","Dir":"Dir|Send|Tuma|Envoyer|ላክ","Dooro doorkaaga":"Dooro doorkaaga|Choose your role|Chagua jukumu|Choisissez votre rôle|ሚናዎን ይምረጡ","Dooro qaybta":"Dooro qaybta|Choose a category|Chagua kundi|Choisissez une catégorie|ምድብ ይምረጡ","Ku soo dhawoow":"Ku soo dhawoow|Welcome|Karibu|Bienvenue|እንኳን ደህና መጡ","Shaqaale-Doon":"Shaqaale-Doon|Looking for workers|Kutafuta wafanyakazi|Cherche travailleurs|ሰራተኛ ፈላጊ","Shaqo-Doon":"Shaqo-Doon|Looking for work|Kutafuta kazi|Cherche emploi|ስራ ፈላጊ","Waxaan raadinayaa shaqaale":"Waxaan raadinayaa shaqaale|I'm looking for workers|Natafuta wafanyakazi|Je cherche des travailleurs|ሰራተኞች እፈልጋለሁ","Waxaan raadinayaa shaqo":"Waxaan raadinayaa shaqo|I'm looking for work|Natafuta kazi|Je cherche un emploi|ስራ እፈልጋለሁ","Shaqaale":"Shaqaale|Workers|Wafanyakazi|Travailleurs|ሰራተኞች","Dalab cusub":"Dalab cusub|New request|Ombi jipya|Nouvelle demande|አዲስ ጥያቄ","Mahadsanid":"Mahadsanid|Thank you|Asante|Merci|አመሰግናለሁ","Samafalka dhiigga":"Samafalka dhiigga|Blood donation|Changia damu|Don de sang|ደም ልገሳ","Keydka":"Keydka|Saved|Vipendwa|Favoris|የተቀመጡ","Jadwal":"Jadwal|Schedule|Ratiba|Horaire|መርሐግብር","Qiimee shaqaalaha":"Qiimee shaqaalaha|Rate worker|Kadiria mfanyakazi|Noter le travailleur|ሰራተኛውን ይመዝኑ","Firaaqadaada waa fursad":"Firaaqadaada waa fursad — riix halkan!|Your free time is an opportunity — tap here!|Muda wako ni fursa — gusa hapa!|Votre temps libre est une opportunité — cliquez!|ትርፍ ጊዜዎ እድል ነው — እዚህ ይጫኑ!","WAQTIGAAGA LACAG KA SAMEE!":"WAQTIGAAGA LACAG KA SAMEE!|MAKE MONEY FROM YOUR TIME!|PATA PESA KUTOKA MUDA WAKO!|GAGNEZ DE L'ARGENT AVEC VOTRE TEMPS!|ከጊዜዎ ገንዘብ ያግኙ!","PromoT1":"Waqtiyada iyo maalmaha aad firaaqada leedahay, ka faa'iidayso!|Use your free time and days off!|Tumia muda wako wa mapumziko!|Utilisez votre temps libre!|ትርፍ ጊዜዎን እና የእረፍት ቀናትዎን ይጠቀሙ!","PromoT2":"Xirfaddaada, aqoontaada iyo dadaalkaaga lacag ka samee.|Monetize your skill, knowledge and effort.|Pata pesa kwa ujuzi, maarifa na juhudi zako.|Monétisez votre compétence, savoir et effort.|ክህሎትዎን፣ ዕውቀትዎን እና ጥረትዎን ገንዘብ ያድርጉ።","PromoT3":"Firaaqadaadu waa fursad, ka dhig il dakhli!|Your free time is an opportunity — make it income!|Muda wako ni fursa — fanya iwe kipato!|Votre temps libre est une opportunité — faites-en un revenu!|ትርፍ ጊዜዎ እድል ነው — ገቢ ያድርጉት!","PromoT4":"Isdiiwaangeli maanta, xirfaddaadana lacag ka samee!|Register today, monetize your skill!|Jisajili leo, pata pesa kwa ujuzi wako!|Inscrivez-vous aujourd'hui, monétisez votre compétence!|ዛሬ ይመዝገቡ፣ ክህሎትዎን ገንዘብ ያድርጉ!","Ha bixin lacag hore":"Ha bixin lacag hore|Don't pay in advance|Usilipe mapema|Ne payez pas d'avance|በቅድሚያ አይክፈሉ","Akhri":"Akhri|Read|Soma|Lire|አንብብ","digniinaha shaqada":"digniinaha shaqada →|job warnings →|maonyo ya kazi →|avertissements →|የስራ ማስጠንቀቂያዎች →","Xeerka Anshaxa":"Xeerka Anshaxa|Code of Conduct|Kanuni za Maadili|Code de conduite|የሥነ ምግባር ደንብ","Terms of Service":"Terms of Service|Terms of Service|Masharti ya Huduma|Conditions d'utilisation|የአገልግሎት ውሎች","Privacy Policy":"Privacy Policy|Privacy Policy|Sera ya Faragha|Politique de confidentialité|የግላዊነት ፖሊሲ","Qaybta shaqada":"Qaybta shaqada|Job category|Kundi la kazi|Catégorie d'emploi|የስራ ምድብ","Shaqada":"Shaqada|Job|Kazi|Emploi|ስራ","Tirada shaqaalaha":"Tirada shaqaalaha|Number of workers|Idadi ya wafanyakazi|Nombre de travailleurs|የሰራተኞች ብዛት","Waqtiga (maalmo & saacado)":"Waqtiga (maalmo & saacado)|Time (days & hours)|Muda (siku na saa)|Temps (jours et heures)|ጊዜ (ቀናት እና ሰዓቶች)","Fariin gaaban":"Fariin gaaban|Short message|Ujumbe mfupi|Message court|አጭር መልእክት","Nooca":"Nooca|Type|Aina|Type|ዓይነት","Ma jiro natiijo":"Ma jiro natiijo|No results|Hakuna matokeo|Aucun résultat|ውጤት የለም","Codsi ma jiro":"Codsi ma jiro|No applications|Hakuna maombi|Aucune candidature|ማመልከቻ የለም","Dalab ma jiro":"Dalab ma jiro|No requests|Hakuna maombi|Aucune demande|ጥያቄ የለም","Wax sugaya ma jiraan":"Wax sugaya ma jiraan|Nothing pending|Hakuna kinachosubiri|Rien en attente|በመጠባበቅ ላይ ምንም የለም","Xaqiijin sugaysa":"Xaqiijin sugaysa|Pending verification|Uthibitisho unaosubiri|Vérification en attente|በመጠባበቅ ላይ ያለ ማረጋገጫ","Profiles (xogta gaarka ah)":"Profiles (xogta gaarka ah)|Profiles (private data)|Profaili (data ya siri)|Profils (données privées)|መገለጫዎች (የግል ውሂብ)","SOS / reports":"SOS / reports|SOS / reports|SOS / ripoti|SOS / rapports|SOS / ሪፖርቶች","Tirtir xogta demo":"Tirtir xogta demo|Reset demo data|Anzisha data ya demo|Réinitialiser les données démo|የማሳያ ውሂብ ዳግም አስጀምር","Fariin (ikhtiyaari)":"Fariin (ikhtiyaari)|Message (optional)|Ujumbe (hiari)|Message (facultatif)|መልእክት (አማራጭ)","Fariin la diray":"Fariin la diray|Message sent|Ujumbe umetumwa|Message envoyé|መልእክት ተልኳል","Waan samafali karaa dhiig":"Waan samafali karaa dhiig|I can donate blood|Naweza kuchangia damu|Je peux donner du sang|ደም መስጠት እችላለሁ","Waxaan oggolahay":"Waxaan oggolahay|I agree|Nakubali|J'accepte|ተስማምቻለሁ","Samafale ahow":"❤️ Samafale ahow|❤️ Become a donor|❤️ Kuwa mfadhili|❤️ Devenez donneur|❤️ ለጋሽ ይሁኑ","Dhiig degdeg ah":"🩸 Dhiig degdeg ah|🩸 Urgent blood|🩸 Damu ya dharura|🩸 Sang urgent|🩸 አስቸኳይ ደም","Samafale":"Samafale|Donor|Mfadhili|Donneur|ለጋሽ","sano":"sano|years|miaka|ans|ዓመታት","codsi":"codsi|applications|maombi|candidatures|ማመልከቻዎች","Heerka":"Heerka|Level|Kiwango|Niveau|ደረጃ","Dalka":"Dalka|Country|Nchi|Pays|አገር","Dhammaan dalalka":"Dhammaan dalalka|All countries|Nchi zote|Tous les pays|ሁሉም አገሮች","Magaalada":"Magaalada|City|Jiji|Ville|ከተማ","Dooro dalka":"Dooro dalka|Choose country|Chagua nchi|Choisir pays|አገር ይምረጡ","Magaalo kale":"Magaalo kale|Other city|Jiji jingine|Autre ville|ሌላ ከተማ","Magaalada magaceeda qor":"Magaalada magaceeda qor|Type the city name|Andika jina la jiji|Tapez le nom de la ville|የከተማውን ስም ይተይቡ","East Africa":"East Africa|East Africa|Afrika Mashariki|Afrique de l'Est|ምስራቅ አፍሪካ"};
+
+
+// Additional translations for the worker health section.
+Object.assign(T, {
+  "Caafimaadkaagu ma fiican yahay?": "Caafimaadkaagu ma fiican yahay?|Is your health generally good?|Je, afya yako kwa ujumla ni nzuri?|Votre santé est-elle généralement bonne ?|ጤናዎ በአጠቃላይ ጥሩ ነው?",
+  "Ma jiraa xanuun mararka qaar kugu soo noqnoqda?": "Ma jiraa xanuun mararka qaar kugu soo noqnoqda?|Do you have any recurring pain or illness?|Je, una maumivu au ugonjwa unaojirudia mara kwa mara?|Avez-vous une douleur ou maladie récurrente ?|አልፎ አልፎ የሚመለስ ህመም ወይም በሽታ አለዎት?",
+  "Haa": "Haa|Yes|Ndiyo|Oui|አዎ",
+  "Maya": "Maya|No|Hapana|Non|አይ",
+  "Faahfaahi xaaladda caafimaadka": "Faahfaahi xaaladda caafimaadka|Please describe your health concern|Tafadhali eleza hali yako ya afya|Veuillez préciser votre problème de santé|እባክዎ የጤናዎን ሁኔታ ያብራሩ",
+  "Ku qor faahfaahinta halkan": "Ku qor faahfaahinta halkan...|Describe it here...|Eleza hapa...|Décrivez ici...|እዚህ ያብራሩ...",
+  "Xogta caafimaadka": "Xogta caafimaadka|Health information|Taarifa za afya|Informations de santé|የጤና መረጃ",
+  "Xogtan waa xasaasi": "Xogta caafimaadku waa xog xasaasi ah. Geli faahfaahinta lagama maarmaanka ah oo keliya.|Health information is sensitive. Share only details that are necessary.|Taarifa za afya ni nyeti. Toa maelezo muhimu tu.|Les informations de santé sont sensibles. Ne partagez que les détails nécessaires.|የጤና መረጃ ሚስጥራዊ ነው። አስፈላጊውን ብቻ ያስገቡ።",
+  "Si sax ah u buuxi xogtaada": "Xirfaddaada iyo xogtaada si sax ah u buuxi.|Complete your profile accurately.|Jaza wasifu wako kwa usahihi.|Remplissez votre profil avec précision.|መገለጫዎን በትክክል ይሙሉ።",
+  "Fadlan buuxi xogta caafimaadka": "Fadlan ka jawaab labada su'aalood ee caafimaadka.|Please answer both health questions.|Tafadhali jibu maswali yote mawili ya afya.|Veuillez répondre aux deux questions de santé.|እባክዎ ሁለቱንም የጤና ጥያቄዎች ይመልሱ።",
+  "Faahfaahinta caafimaadka waa loo baahan yahay": "Fadlan faahfaahi xaaladda caafimaadka.|Please describe the health concern.|Tafadhali eleza hali ya afya.|Veuillez préciser le problème de santé.|እባክዎ የጤና ሁኔታውን ያብራሩ።"
+});
+
+// =============================================================
+// SECTION 6: NAV
+// =============================================================
+const TABS={employer:[["welcome","Bogga"],["raadi","Raadi"],["hire","Dalab shaqaale"],["dhiig","Dhiig"],["dalab","Dalabyo"],["digniin","Digniin"],["admin","Admin"]],worker:[["welcome","Bogga"],["jobs","Shaqooyin"],["seek","Dalab shaqo"],["dhiig","Dhiig"],["dalab","Dalabyo"],["digniin","Digniin"],["admin","Admin"]],guest:[["welcome","Bogga"],["raadi","Raadi"],["jobs","Shaqooyin"],["dhiig","Dhiig"],["digniin","Digniin"]]};
+const NEXT={sugaya:["Shaqaaluhu wuu aqbalay","aqbalay"],aqbalay:["Check-in","socda"],socda:["Dhamaystir shaqada","dhammaaday"],dhammaaday:["Qiimee shaqaalaha","rate"]};
+
+// =============================================================
+// SECTION 7: HELPERS
+// =============================================================
+let lang=0;try{lang=+localStorage.getItem("shaqo_l")||0}catch(e){}
+const t=k=>{if(!k)return"";if(!T[k])return k;const parts=T[k].split("|");return parts[lang]!==undefined?parts[lang]:(parts[0]||k)};
+const $=s=>document.querySelector(s),esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const F=(id,l,i)=>`<label for="${id}">${t(l)}</label>${i||`<input id="${id}">`}`;
+const sel=(id,o,fn,selected)=>`<select id="${id}"${fn?` onchange="${fn}"`:""}>${o.map(x=>{const v=Array.isArray(x)?x[0]:x,l=Array.isArray(x)?x[1]:x;return`<option value="${esc(v)}"${selected===v?" selected":""}>${t(l)}</option>`}).join("")}</select>`;
+function to12h(t){if(!t||!t.includes(":"))return t||"—";const p=t.split(":"),h=parseInt(p[0]),m=parseInt(p[1]);const ap=h>=12?"PM":"AM",h12=h%12||12;return h12+":"+String(m).padStart(2,"0")+" "+ap}
+function timePicker(id,def){let h24=8,m=0;if(def&&def.includes(":")){const p=def.split(":");h24=parseInt(p[0]);m=parseInt(p[1])}const ap=h24>=12?"PM":"AM",h12=h24%12||12;const hM=HOURS.includes(h12)?h12:8;const mM=MINUTES.includes(m)?m:0;return`<div class="time-picker"><select id="${id}_h">${HOURS.map(h=>`<option value="${h}"${h===hM?" selected":""}>${h}</option>`).join("")}</select><span class="tp-sep">:</span><select id="${id}_m">${MINUTES.map(mm=>`<option value="${mm}"${mm===mM?" selected":""}>${String(mm).padStart(2,"0")}</option>`).join("")}</select><select id="${id}_a"><option value="AM"${ap==="AM"?" selected":""}>AM</option><option value="PM"${ap==="PM"?" selected":""}>PM</option></select></div>`}
+function getTime(id){const h=parseInt($("#"+id+"_h").value),m=parseInt($("#"+id+"_m").value),a=$("#"+id+"_a").value;let h24=h;if(a==="PM"&&h!==12)h24=h+12;if(a==="AM"&&h===12)h24=0;return String(h24).padStart(2,"0")+":"+String(m).padStart(2,"0")}
+function face(n,g){const sk=["#8d5a3b","#a8714a","#6f452c","#c08a60"][n%4],bg=["#cfe8df","#f3e2c7","#d9dff3","#f2d5d5","#e3d9f0"][n%5],hj=["#7a3b69","#2f5d8a","#8a4b2f","#3b6b4f"][n%4];const top=g==="D"?`<ellipse cx="40" cy="38" rx="21" ry="24" fill="${hj}"/><circle cx="40" cy="40" r="13" fill="${sk}"/>`:`<circle cx="40" cy="40" r="15" fill="${sk}"/><path d="M25 36c1-13 29-13 30 0c-8-5-22-5-30 0z" fill="#1c1c1c"/>`;return"data:image/svg+xml,"+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><rect width="80" height="80" fill="${bg}"/><path d="M8 80c2-18 16-24 32-24s30 6 32 24z" fill="${g==="D"?hj:"#35507a"}"/>${top}</svg>`)}
+
+// =============================================================
+// SECTION 7B: CASCADING CITY — with "Other" option
+// =============================================================
+const OTHER_VAL="__other__";
+
+function cityOptions(country,selected){
+  if(!country)return `<option value="">${t("Dooro dalka")}</option>`;
+  const cities=AREAS_BY_COUNTRY[country]||[];
+  const isOther = selected && selected!==OTHER_VAL && !cities.includes(selected);
+  const out=[];
+  out.push(`<option value="">${t("Dhammaan")} ${country}</option>`);
+  cities.forEach(c=>out.push(`<option value="${esc(c)}"${selected===c?" selected":""}>${esc(c)}</option>`));
+  out.push(`<option value="${OTHER_VAL}"${selected===OTHER_VAL||isOther?" selected":""}>➕ ${t("Magaalo kale")}...</option>`);
+  return out.join("");
+}
+
+function cityOptionsForm(country,selected){
+  const cities=country?(AREAS_BY_COUNTRY[country]||[]):[];
+  if(!cities.length)return `<option value="">${t("Dooro dalka")}</option>`;
+  const isOther = selected && selected!==OTHER_VAL && !cities.includes(selected);
+  const out=cities.map(c=>`<option value="${esc(c)}"${selected===c?" selected":""}>${esc(c)}</option>`);
+  out.push(`<option value="${OTHER_VAL}"${selected===OTHER_VAL||isOther?" selected":""}>➕ ${t("Magaalo kale")}...</option>`);
+  return out.join("");
+}
+
+function toggleOtherCity(selId, inputId){
+  const sel=$("#"+selId), inp=$("#"+inputId);
+  if(!sel||!inp)return;
+  if(sel.value===OTHER_VAL){inp.style.display="block";inp.focus();inp.placeholder=t("Magaalada magaceeda qor")}
+  else{inp.style.display="none";inp.value=""}
+}
+
+function getCityValue(selId,inputId){
+  const sel=$("#"+selId), inp=$("#"+inputId);
+  if(!sel)return "";
+  if(sel.value===OTHER_VAL){return inp?(inp.value||"").trim():""}
+  return sel.value;
+}
+
+// =============================================================
+// SECTION 8: SEED DATA
+// =============================================================
+function seed(){const W=(id,name,g,skill,cat,area,yrs,rating,n,mode,dl,from,to,level,lic)=>({id,name,g,skill,cat,area:area,yrs,rating,n,mode:mode.split(","),dl:dl.split("").map(Number),from,to,level,lic:!!lic,status:"ok",phone:"+252 61 000 "+(1000+id),country:countryOfArea(area)}),J=(id,type,org,title,cat,area,n,sched,d)=>({id,type,org,title,cat,area:area,n,sched,d,country:countryOfArea(area)});
+return{nid:60,favs:[],workers:[W(1,"Faadumo Cali Nuur","D","Homemaid","Nadaafad","Muqdisho",6,4.8,32,"Guri","02345","08:00","18:00",2),W(2,"Cabdi Maxamed Geedi","L","Koronto-Yaqaan","Koronto","Hargeysa",4,4.6,18,"Guri,Goob","0126","17:00","21:00",1),W(3,"Macalin Xasan Cumar","L","Macalin Xisaab","Macalin","Muqdisho",9,4.9,41,"Online,Guri","23456","16:00","20:00",3),W(4,"Axmed Warsame","L","Deked-Xamaali","Xamaali","Boosaaso",3,4.3,12,"Goob","012345","06:00","14:00",1),W(5,"Khadija Nuur","D","Umuliso","Caafimaad","Muqdisho",8,4.9,60,"Guri,Online","02345","08:00","18:00",3,1),W(6,"Ismaaciil Jaamac","L","Civil-Engineer","Engineer","Hargeysa",10,4.9,30,"Goob,Online","2345","08:00","17:00",3,1),W(7,"Hodan Yuusuf","D","Darawal","Darawal","Kismaayo",5,4.5,22,"Goob","016","17:00","23:00",2),W(8,"Sacdiyo Faarax","D","Makeup-Artist","Beauty","Nairobi – Eastleigh",4,4.7,25,"Guri","01","09:00","17:00",1),W(9,"Maryan Axmed","D","Macalimad Ingiriis","Macalin","Nairobi – Eastleigh",7,4.8,36,"Online","0126","18:00","22:00",2),W(10,"Bashiir Hirsi","L","Mobile-Yaqaan","Mobile-Dayactir","Mombasa",5,4.4,15,"Guri,Goob","0126","15:00","20:00",2),W(11,"Yasin Cabdi","L","TV-Yaqaan","TV-Dayactir","Jigjiga",6,4.7,28,"Guri","0126","10:00","20:00",2),W(12,"Fartun Cali","D","Delivery-Rider","Delivery","Djibouti City",3,4.5,40,"Goob","012345","08:00","20:00",1),W(13,"Abshir Maxamed","L","Tubiiste","Biyo","Balbala",8,4.6,25,"Guri,Goob","0126","08:00","18:00",2),W(14,"Nasteexo Cumar","D","Ilmo-Haye","Guryaha","Nairobi – South C",5,4.8,30,"Guri","0123","07:00","19:00",2),W(15,"Farxaan Cali","L","Computer-Yaqaan","IT","Nairobi – Kasarani",7,4.9,45,"Guri,Online","0126","09:00","21:00",2),W(16,"Ifrah Cabdi","D","Web-Developer","IT","Dar es Salaam",6,4.8,38,"Online","0123","10:00","22:00",2),W(17,"Maxamed Xasan","L","Software-Install","IT","Kampala",5,4.7,30,"Guri,Online","0126","08:00","20:00",2),W(18,"Amina Xuseen","D","Qareen","Qareen","Djibouti City",9,4.9,50,"Xafiis,Online","0123","09:00","17:00",3,1),W(19,"Cabdirisaaq Cali","L","Xisaabiye","Xisaabiye","Nairobi – Eastleigh",8,4.8,42,"Xafiis,Online","0126","08:00","18:00",3),W(20,"Muna Ibraahim","D","Personal-Trainer","Fitness","Dar es Salaam",5,4.7,35,"Guri,Gym","0123","06:00","20:00",2)],
+jobs:[J(1,"Hay’ad","Xarun waxbarasho","Macalin Ingiriis & Xisaab","Macalin","Muqdisho",2,"Isniin–Khamiis","Fasallada hoose."),J(2,"Shirkad","Hotel","Waiter & Qol-Nadiifiso","Wax kale","Nairobi – Eastleigh",4,"Toddobaadka","Khibrad waa mudnaan."),J(3,"Qof","Qoys","Nadiifiso guri","Nadaafad","Mombasa",1,"Sabti",""),J(4,"Shirkad","Shirkad dhisme","Dhisme-Xamaali","Xamaali","Hargeysa",10,"Sabti–Khamiis","Goob cusub."),J(5,"Hay’ad","NGO caafimaad","Kalkaaliso guri","Caafimaad","Jigjiga",3,"Isniin–Jimce","Shahaado waa qasab."),J(6,"Shirkad","Shirkad gaadiid","Darawal delivery","Darawal","Djibouti City",5,"Fiidkii","Laysin waa qasab."),J(7,"Qof","Qoys","TV dayactir","TV-Dayactir","Balbala",1,"Sabti","Screen jabay."),J(8,"Shirkad","Shirkad koronto","Koronto-Yaqaan","Koronto","Nairobi – Eastleigh",3,"Isniin–Jimce","Khibrad leh."),J(9,"Qof","Qoys","Tubiiste biyo","Biyo","Kampala",1,"Degdeg","Tubo jabay."),J(10,"Shirkad","Shirkad IT","Software-Install & Network","IT","Dar es Salaam",2,"Isniin–Jimce","Windows + Office."),J(11,"Shirkad","Shirkad ganacsi","Xisaabiye","Xisaabiye","Nairobi – South C",1,"Isniin–Jimce","QuickBooks khibrad."),J(12,"Qof","Aroos","Makeup-Artist","Beauty","Nairobi – Eastleigh",1,"Sabti","Aroos fiidnimo."),J(13,"Shirkad","Shirkad Addis","Software-Install","IT","Addis Ababa",2,"Isniin–Jimce","IT support."),J(14,"Qof","Qoys Addis","Macalin Ingiriis","Macalin","Addis Ababa",1,"Weekend","Online.")],
+bookings:[],apps:[],donors:[{id:901,name:"Yaasiin C.",bt:"O+",area:"Muqdisho",phone:"+252 61 100 0001"},{id:902,name:"Maryan A.",bt:"A+",area:"Nairobi – Eastleigh",phone:"+254 700 100 0002"},{id:903,name:"Bashiir H.",bt:"O+",area:"Addis Ababa",phone:"+251 91 100 0003"}],sos:[],reqs:[]}}
+
+// =============================================================
+// SECTION 9: STATE
+// =============================================================
+function load(){try{const x=localStorage.getItem("shaqo_v15");if(x)return JSON.parse(x)}catch(e){}return seed()}
+function save(){try{localStorage.setItem("shaqo_v15",JSON.stringify(S))}catch(e){}}
+let S=load(),view="welcome",role="guest",q="",cat="",fl={},dayF="",timeF="",bsel="",countryF="",cityF="",cityFOther="";const IMG={};
+try{role=localStorage.getItem("shaqo_role")||"guest"}catch(e){}
+function toast(m){const e=$("#toast");e.textContent=m;e.hidden=false;clearTimeout(toast.k);toast.k=setTimeout(()=>e.hidden=true,3200)}
+function modal(h){$("#mb").innerHTML=h;$("#modal").hidden=false}function closeM(){$("#modal").hidden=true}
+$("#modal").addEventListener("click",e=>{if(e.target.id==="modal")closeM()});
+function thanks(m){modal(`<div style="text-align:center;padding:20px 10px"><div style="font-size:56px;color:var(--red)">♥</div><h2 style="margin:10px 0">${t("Mahadsanid")}</h2><p style="color:var(--mut);line-height:1.6">${esc(m)}</p><button class="p" onclick="closeM()" style="margin-top:16px;min-width:140px">${t("Waa hagaag")}</button></div>`)}
+function img(el,k){const f=el.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const i=new Image();i.onload=()=>{const s=Math.min(1,640/Math.max(i.width,i.height)),c=document.createElement("canvas");c.width=Math.round(i.width*s);c.height=Math.round(i.height*s);c.getContext("2d").drawImage(i,0,0,c.width,c.height);IMG[k]=c.toDataURL("image/jpeg",.6);const p=$("#pv_"+k);if(p){p.src=IMG[k];p.hidden=false}};i.src=r.result};r.readAsDataURL(f)}
+function updateBrand(){const b=$("#brandEl");if(b)b.textContent=t("Shaqo")}
+function updatePromoText(){const p=$("#promoTitle"),p1=$("#promoT1"),p2=$("#promoT2"),p3=$("#promoT3"),p4=$("#promoT4");if(p)p.textContent=t("WAQTIGAAGA LACAG KA SAMEE!");if(p1)p1.textContent="⏰ "+t("PromoT1");if(p2)p2.innerHTML="💡 <b>"+t("PromoT2")+"</b>";if(p3)p3.textContent="🚀 "+t("PromoT3");if(p4)p4.textContent="👉 "+t("PromoT4")}
+function setL(v){lang=+v;try{localStorage.setItem("shaqo_l",v)}catch(e){}document.documentElement.lang=["so","en","sw","fr","am"][lang];updateBrand();updatePromoText();render()}
+function go(v){view=v;for(const k in IMG)delete IMG[k];render()}
+function pickRole(r){role=r;try{localStorage.setItem("shaqo_role",r)}catch(e){}go(r==="employer"?"raadi":"seek")}
+function switchRole(){role="guest";try{localStorage.removeItem("shaqo_role")}catch(e){}go("welcome")}
+
+// Cascading handlers
+function setCountryFilter(v){countryF=v;cityF="";cityFOther="";render()}
+function setCityFilter(v){
+  if(v===OTHER_VAL){cityF="";cityFOther=$("#cityFilterOther")?.value?.trim()||""}
+  else{cityF=v;cityFOther=""}
+  list();
+}
+function onOtherCityInput(v){cityFOther=v.trim();list()}
+function updateSeekCities(){const c=$("#wcountry")?.value;const cd=$("#wcity");if(cd){cd.innerHTML=cityOptionsForm(c,"");const inp=$("#wcity_other");if(inp){inp.style.display="none";inp.value=""}}}
+function updateHireCities(){const c=$("#jcountry")?.value;const cd=$("#jcity");if(cd){cd.innerHTML=cityOptionsForm(c,"");const inp=$("#jcity_other");if(inp){inp.style.display="none";inp.value=""}}}
+function updateDonorCities(){const c=$("#dcountry")?.value;const cd=$("#dcity");if(cd){cd.innerHTML=cityOptionsForm(c,"");const inp=$("#dcity_other");if(inp){inp.style.display="none";inp.value=""}}}
+
+// =============================================================
+// SECTION 10: RENDER
+// =============================================================
+function render(){updateBrand();$("#lg").value=lang;const tabs=TABS[role]||TABS.guest;
+$("#nav").innerHTML=tabs.map(x=>`<button class="${view===x[0]?"on":""}" onclick="go('${x[0]}')">${t(x[1])}</button>`).join("");
+$("#app").innerHTML=({welcome:vWelcome,raadi:vRaadi,jobs:vJobs,hire:vHire,seek:vSeek,dhiig:vDhiig,dalab:vDalab,digniin:vDigniin,admin:vAdmin})[view]()+`<footer>${t("Hal-abuure")}: <b>Abdullahi M. Kulane</b> · Tel <a href="tel:+252615128202">+252615128202</a><br><button onclick="tos()">${t("Terms of Service")}</button> · <button onclick="privacy()">${t("Privacy Policy")}</button> · <button onclick="conduct()">${t("Xeerka Anshaxa")}</button></footer>`;if(view==="raadi")list();window.scrollTo(0,0)}
+const DEMO_PHOTOS=[
+"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=180&h=180&q=82",
+"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=180&h=180&q=82",
+"https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=180&h=180&q=82",
+"https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=180&h=180&q=82",
+"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=180&h=180&q=82",
+"https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=180&h=180&q=82",
+"https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=180&h=180&q=82",
+"https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=180&h=180&q=82"
+];
+const dayStr=w=>[...w.dl].sort((a,b)=>a-b).map(i=>t(DAYS[i])).join(" "),av=w=>w.photo||DEMO_PHOTOS[(Math.max(1,+w.id||1)-1)%DEMO_PHOTOS.length]||face(w.id,w.g);
+const timeStr=w=>`${to12h(w.from)}–${to12h(w.to)}`;
+const badges=w=>{let b="";if(w.lic)b+=`<span class="tag g">✓ Licensed</span>`;b+=`<span class="tag g">${t("Heerka")} ${w.level}</span>`;if(w.mode.includes("Online"))b+=`<span class="tag b">${t("Online")}</span>`;return b};
+const chips=()=>["",...CATS].map(c=>`<button class="chip ${cat===c?"on":""}" onclick="cat='${c}';render()">${c?t(c):t("Dhammaan")}</button>`).join("");
+
+function showPromo(force){const popup=$("#promoPopup");if(!popup)return;updatePromoText();if(!force){try{if(sessionStorage.getItem("shaqo_promo_shown"))return}catch(e){}}popup.hidden=false;try{sessionStorage.setItem("shaqo_promo_shown","1")}catch(e){}}
+function closePromo(){$("#promoPopup").hidden=true}
+function promoCtaClick(){closePromo();try{localStorage.setItem("shaqo_role","worker")}catch(e){}role="worker";go("seek");setTimeout(()=>toast("💰 "+t("Ku soo dhawoow")),400)}
+setTimeout(()=>showPromo(false),1800);
+
+// =============================================================
+// SECTION 11: VIEWS
+// =============================================================
+function vWelcome(){const rp=role==="employer"?`<span class="role-pill employer">👔 ${t("Shaqaale-Doon")}</span>`:role==="worker"?`<span class="role-pill worker">🧑‍🔧 ${t("Shaqo-Doon")}</span>`:`<span class="role-pill guest">👋 ${t("Ku soo dhawoow")}</span>`;
+return`<div class="welcome-hero"><img src="${HERO_IMG}" alt=""><div class="wh-text"><h1>${t("Shaqo")}</h1><p>${t("Hel xirfadle, hel shaqo")} · ${t("East Africa")}</p></div></div>
+<div class="row sp" style="margin-bottom:16px">${rp}${role!=="guest"?`<button class="o" onclick="switchRole()" style="min-height:38px;padding:8px 14px;font-size:12px">↺ ${t("Beddel doorka")}</button>`:""}</div>
+<button class="promo-banner" onclick="showPromo(true)"><b>💰 ${t("WAQTIGAAGA LACAG KA SAMEE!")}</b><span>⏰ ${t("Firaaqadaada waa fursad")}</span></button>
+<h2 style="text-align:center;margin-top:8px">${t("Dooro doorkaaga")}</h2>
+<div class="role-cards">
+<button class="role-card employer" onclick="pickRole('employer')"><div class="rc-content"><div class="role-icon">👔</div><h2>${t("Shaqaale-Doon")}</h2><p>${t("Waxaan raadinayaa shaqaale")}</p><div class="arrow">→</div></div></button>
+<button class="role-card worker" onclick="pickRole('worker')"><div class="rc-content"><div class="role-icon">🧑‍🔧</div><h2>${t("Shaqo-Doon")}</h2><p>${t("Waxaan raadinayaa shaqo")}</p><div class="arrow">→</div></div></button>
+</div>
+<div class="grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:22px">
+<div class="stat-card"><div class="n">${S.workers.filter(w=>w.status==="ok").length}</div><div class="l">${t("Shaqaale")}</div></div>
+<div class="stat-card"><div class="n">${S.jobs.length}</div><div class="l">${t("Shaqooyin")}</div></div>
+<div class="stat-card"><div class="n">${S.donors.length}</div><div class="l">${t("Dhiig")}</div></div>
+</div>
+<h2>🌍 ${t("East Africa")} · ${t("Dalka")}</h2>
+<div class="country-grid">${COUNTRIES.map(c=>`<div class="country-card" onclick="setCountryFilter('${c}');go('raadi')"><span class="flag">${COUNTRY_FLAGS[c]}</span><b>${c}</b><div class="s">${(AREAS_BY_COUNTRY[c]||[]).length} ${t("Magaalada")}</div></div>`).join("")}</div>
+<h2 style="margin-top:24px">${t("Dooro qaybta")}</h2>
+<div class="cat-grid">${CATS.map(c=>`<button class="cat-card" onclick="cat='${c}';go('${role==="worker"?"jobs":"raadi"}')"><img src="${CAT_IMG[c]}" alt="" loading="lazy"><div class="cc-body"><b>${t(c)}</b><div class="s">${role==="worker"?t("Shaqooyin"):t("Shaqaale")}</div></div></button>`).join("")}</div>
+<div class="warn" style="margin-top:24px"><b>⚠️ ${t("Digniin")}:</b> ${t("Ha bixin lacag hore")}. <button onclick="go('digniin')" style="background:none;border:0;color:var(--amber);text-decoration:underline;cursor:pointer;font:inherit;font-weight:700">${t("digniinaha shaqada")}</button></div>`}
+
+function vRaadi(){
+  const showOther = (countryF && cityF!=="" && cityF!==undefined) ? false : false;
+  const otherVisible = cityF==="" && $("#cityFilterOther") && $("#cityFilterOther").style.display==="block";
+  return`<div class="page-header"><h1 class="page-title">🔍 ${t("Raadi")}</h1><p class="page-sub">${t("East Africa")} · ${t("Dhammaan dalalka")}</p></div>
+<div class="warn-banner"><b>⚠️ ${t("Digniin")}:</b> ${t("Ha bixin lacag hore")}. <button onclick="go('digniin')" style="background:none;border:0;color:var(--red);text-decoration:underline;cursor:pointer;font:inherit;font-weight:700">${t("Akhri")}</button>.</div>
+<div class="filter-bar">
+<select onchange="setCountryFilter(this.value)" aria-label="${t("Dalka")}"><option value="">🌍 ${t("Dhammaan dalalka")}</option>${COUNTRIES.map(c=>`<option value="${c}"${countryF===c?" selected":""}>${COUNTRY_FLAGS[c]} ${c}</option>`).join("")}</select>
+<select id="cityFilter" onchange="onCityFilterChange(this.value)" aria-label="${t("Magaalada")}"${!countryF?" disabled":""}>${cityOptions(countryF,cityF)}</select>
+<input id="cityFilterOther" placeholder="${t("Magaalada magaceeda qor")}" style="display:none" oninput="onOtherCityInput(this.value)">
+</div>
+<input id="q" placeholder="${t("Raadi")}…" value="${esc(q)}" oninput="q=this.value.toLowerCase();list()">
+<div class="row wrap" style="margin:12px 0">${chips()}</div>
+<div class="row wrap fl" style="margin-bottom:12px">${[["online","Online"],["wk","Weekend"],["fav","Keydka"]].map(x=>`<button class="chip ${fl[x[0]]?"on":""}" onclick="fl.${x[0]}=!fl.${x[0]};render()">${t(x[1])}</button>`).join("")}<select onchange="dayF=this.value;list()" style="min-height:40px;padding:8px 12px;width:auto;border-radius:20px;font-size:13px;font-weight:600"><option value="">${t("Maalinta")}</option>${DAYS.map((d,i)=>`<option value="${i}"${String(dayF)===String(i)?" selected":""}>${t(d)}</option>`).join("")}</select></div>
+<div class="row" style="margin-bottom:14px;gap:8px;flex-wrap:wrap"><span style="font-size:12px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.4px">${t("Waqtiga")}:</span>${timePicker("tf",timeF||"08:00")}<button class="o" onclick="applyTimeFilter()" style="min-height:44px;padding:8px 14px;font-size:12px">✓</button></div>
+<div class="explanation-row"><b>💡 Tip:</b> Dooro dal si aad u aragto magaalooyinka. Haddii aad ka dooratid "➕ ${t("Magaalo kale")}...", waxaad qori kartaa magaalada aad rabto.</div>
+<div id="list" class="grid"></div>`;
+}
+
+function onCityFilterChange(v){
+  const inp=$("#cityFilterOther");
+  if(v===OTHER_VAL){if(inp){inp.style.display="block";inp.focus();inp.placeholder=t("Magaalada magaceeda qor")}cityF="";cityFOther=inp?.value?.trim()||""}
+  else{if(inp){inp.style.display="none";inp.value=""}cityF=v;cityFOther=""}
+  list();
+}
+
+function applyTimeFilter(){timeF=getTime("tf");list();toast(t("Waqtiga")+": "+to12h(timeF))}
+function list(){
+  const cityMatch = cityF ? (w.area===cityF) : (cityFOther ? (w.area===cityFOther) : true);
+  const r=S.workers.filter(w=>w.status==="ok"&&(!cat||w.cat===cat)&&(!q||(w.name+w.skill+w.area).toLowerCase().includes(q))&&(!fl.online||w.mode.includes("Online"))&&(!fl.wk||w.dl.some(d=>d===0||d===1||d===6))&&(!fl.fav||S.favs.includes(w.id))&&(dayF===""||w.dl.includes(+dayF))&&(!countryF||w.country===countryF)&&cityMatch&&(!timeF||(w.from<=w.to?(w.from<=timeF&&timeF<=w.to):(timeF>=w.from||timeF<=w.to)))).sort((a,b)=>b.rating-a.rating);
+  $("#list").innerHTML=r.length?r.map(w=>`<div class="card"><div class="row"><img class="av" src="${av(w)}"><div style="flex:1;min-width:0"><b style="font-size:15px">${esc(w.name)}</b><div class="s">${esc(w.skill)} · ${esc(w.area)} ${COUNTRY_FLAGS[w.country]||""}</div><div class="s">${w.n?`<span class="stars">${"★".repeat(Math.round(w.rating))}</span> ${w.rating.toFixed(1)} (${w.n}) · `:""}${w.yrs} ${t("sano")} · ${dayStr(w)} ${timeStr(w)}</div></div><button class="fv" onclick="fav(${w.id})">${S.favs.includes(w.id)?"♥":"♡"}</button></div><div style="margin-top:8px">${badges(w)}</div><button class="p" style="width:100%;margin-top:12px" onclick="openW(${w.id})">${t("Fiiri & dalbo")} →</button></div>`).join(""):`<div class="card" style="text-align:center;padding:40px 20px"><div style="font-size:56px;opacity:.25;margin-bottom:12px">🔍</div><p class="s">${t("Ma jiro natiijo")}</p></div>`
+}
+function fav(id){const i=S.favs.indexOf(id);i<0?S.favs.push(id):S.favs.splice(i,1);save();list()}
+function openW(id){const w=S.workers.find(x=>x.id===id);let warn="";
+if(w.cat==="Caafimaad")warn=`<div class="warn danger"><b>⚠️ ${t("Digniin")}:</b> ${t("Caafimaad")}</div>`;
+else if(w.cat==="Macalin")warn=`<div class="warn"><b>⚠️ ${t("Digniin")}:</b> ${t("Macalin")}</div>`;
+else warn=`<div class="warn"><b>⚠️ ${t("Digniin")}:</b> ${t("Ha bixin lacag hore")}.</div>`;
+modal(`<div class="row sp" style="margin-bottom:10px"><h2 style="margin:0;font-size:20px">${esc(w.name)}</h2><button class="o" onclick="closeM()" style="min-height:38px;padding:6px 12px;font-size:13px">${t("Xir")}</button></div>${warn}
+<div class="row" style="margin:12px 0"><img class="av" src="${av(w)}" style="width:80px;height:80px"><div>${badges(w)}<div style="font-weight:700;margin-top:6px;font-size:15px">${esc(w.skill)}</div><div class="s">${esc(w.area)} · ${COUNTRY_FLAGS[w.country]||""} ${esc(w.country)}</div></div></div>
+<div class="card"><b>📅 ${t("Jadwal")}</b><div class="s" style="margin-top:6px">${dayStr(w)} · ${timeStr(w)}</div><div class="s">${esc(w.mode.join(" / "))}</div></div>
+<div class="form-section"><h4>${t("Dalab cusub")}</h4>${F("bd","Taariikh",'<input id="bd" type="date">')}<label>${t("Waqtiga")}</label>${timePicker("bt","09:00")}${F("bh","Muddada",sel("bh",DURATIONS))}${F("ba","Cinwaanka")}${F("brn","Magacaaga")}${F("brp","Telefoonkaaga",'<input id="brp" type="tel">')}${F("bcn","Faahfaahin",'<textarea id="bcn" rows="2"></textarea>')}</div>
+<button class="p" style="width:100%;margin-top:12px" onclick="book(${w.id})">${t("Dalbo hadda")} →</button>`)}
+function book(id){const d=$("#bd").value,tm=getTime("bt"),a=$("#ba").value.trim();if(!d||!a||!$("#brn").value.trim()||!$("#brp").value.trim()){toast(t("Digniin"));return}
+modal(`<div class="warn danger"><b>⚠️ ${t("Digniin")}:</b> ${t("Ha bixin lacag hore")}.</div><div class="row" style="margin-top:16px"><button class="p" style="flex:1" onclick="doBook(${id})">${t("Waan fahmay")}</button><button class="o" onclick="closeM()">${t("Jooji")}</button></div>`);book.last={d,tm,a,h:$("#bh").value,rn:$("#brn").value.trim(),rp:$("#brp").value.trim()}}
+function doBook(id){const x=book.last;if(!x){toast("Error");closeM();return}S.bookings.push({id:S.nid++,wid:id,d:x.d,t:x.tm,h:x.h,a:x.a,rn:x.rn,rp:x.rp,status:"sugaya"});save();closeM();go("dalab");toast("✓")}
+
+function vJobs(){const r=S.jobs.filter(j=>!cat||j.cat===cat);return`<div class="page-header"><h1 class="page-title">💼 ${t("Shaqooyin")}</h1><p class="page-sub">${t("East Africa")}</p></div><div class="row wrap" style="margin-bottom:14px">${chips()}</div><div class="grid">${r.map(j=>`<div class="card"><div class="row sp"><b style="font-size:15px">${esc(j.title)}</b><span class="tag g">${t(j.type)}</span></div><div class="s" style="margin-top:4px">${esc(j.org)} · ${esc(j.area)} ${COUNTRY_FLAGS[j.country]||""}</div><div class="s">${t(j.cat)} · ${j.n} · ${esc(j.sched)}</div><div class="s" style="margin-top:8px">👥 ${S.apps.filter(a=>a.jid===j.id).length} ${t("codsi")}</div><button class="p" style="width:100%;margin-top:12px" onclick="applyOpen(${j.id})">${t("Codso")} →</button></div>`).join("")||`<div class="card" style="text-align:center;padding:40px"><p class="s">${t("Dalab ma jiro")}</p></div>`}</div>`}
+function applyOpen(id){const j=S.jobs.find(x=>x.id===id);modal(`<h2 style="font-size:20px">${esc(j.title)}</h2><div class="s" style="margin-bottom:12px">${esc(j.org)} · ${esc(j.area)}</div>${F("an","Magac")}${F("ap","Telefoon",'<input id="ap" type="tel">')}${F("at","Fariin gaaban",'<textarea id="at"></textarea>')}<div class="row" style="margin-top:16px"><button class="p" style="flex:1" onclick="apply(${id})">${t("Codso")}</button><button class="o" onclick="closeM()">${t("Xir")}</button></div>`)}
+function apply(id){const n=$("#an").value.trim(),p=$("#ap").value.trim();if(!n||!p){toast(t("Digniin"));return}S.apps.push({id:S.nid++,jid:id,name:n,phone:p,note:$("#at").value.trim(),mine:1});save();render();thanks(t("Codso"))}
+
+function vHire(){return`<div class="page-header"><h1 class="page-title">👔 ${t("Dalab shaqaale")}</h1><p class="page-sub">${t("East Africa")}</p></div><div class="card">${F("jt","Qof",sel("jt",ORG))}
+<div class="form-section"><h4>📋 ${t("Shaqada")}</h4>${F("jo","Magac")}${F("jp","Telefoon",'<input id="jp" type="tel">')}${F("jc","Qaybta",sel("jc",CATS))}${F("jh","Shaqada")}</div>
+<div class="form-section"><h4>📍 ${t("Goobta")}</h4><div class="form-grid">${F("jcountry","Dalka",`<select id="jcountry" onchange="updateHireCities()">${COUNTRIES.map(c=>`<option value="${c}"${c==="Soomaaliya"?" selected":""}>${COUNTRY_FLAGS[c]} ${c}</option>`).join("")}</select>`)}${F("jcity","Magaalada",`<select id="jcity" onchange="toggleOtherCity('jcity','jcity_other')">${cityOptionsForm("Soomaaliya","")}</select>`)}</div><input id="jcity_other" placeholder="${t("Magaalada magaceeda qor")}" style="display:none;margin-top:8px"></div>
+<div class="form-section"><h4>⏱️ ${t("Waqtiga")}</h4>${F("jn","Tirada shaqaalaha",'<input id="jn" type="number" min="1" value="1">')}${F("js","Waqtiga (maalmo & saacado)")}${F("jd","Faahfaahin",'<textarea id="jd"></textarea>')}</div>
+<button class="p" style="width:100%;margin-top:16px" onclick="addJob()">${t("Dalab shaqaale")} →</button></div>`}
+function addJob(){const o=$("#jo").value.trim(),h=$("#jh").value.trim(),p=$("#jp").value.trim();const area=getCityValue("jcity","jcity_other");if(!o||!h||!p||!area){toast(t("Digniin"));return}const country=$("#jcountry").value;S.jobs.unshift({id:S.nid++,type:$("#jt").value,org:o,title:h,cat:$("#jc").value,area:area,n:+$("#jn").value||1,sched:$("#js").value||"—",d:$("#jd").value.trim(),mine:1,country:country});save();go("jobs");thanks(t("Mahadsanid"))}
+
+function vSeek(){return`<div class="page-header"><h1 class="page-title">🧑‍🔧 ${t("Dalab shaqo")}</h1><p class="page-sub">${t("East Africa")} · ${t("Diiwaangeli")}</p></div><div class="card">
+<div class="profile-intro"><img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=360&h=300&q=85" alt="Shaqaale xirfadlayaal ah" loading="lazy"><div><span class="profile-kicker">✦ ${t("Diiwaangeli")}</span><h3>${t("Shaqo-Doon")}</h3><p>${t("Hel xirfadle, hel shaqo")}. ${t("Sawirkaaga")}. ${t("Si sax ah u buuxi xogtaada")}.</p></div></div>
+<div class="form-section"><h4>👤 ${t("Magac")} & ${t("Sawirkaaga")}</h4>${F("wph","Sawirkaaga",`<input id="wph" type="file" accept="image/*" onchange="img(this,'ph')"><img id="pv_ph" class="pv" hidden>`)}${F("wn","Magac")}${F("wp","Telefoon",`<div class="row"><input id="wp" type="tel"><button class="o" onclick="sendOtp()" style="min-width:76px">${t("OTP")}</button></div>`)}${F("wo","OTP",'<input id="wo" inputmode="numeric" placeholder="1234">')}${F("wg","Jinsi",sel("wg",[["L","Lab"],["D","Dheddig"]],"licToggle()"))}</div>
+<div class="form-section"><h4>🔧 ${t("Xirfadda")}</h4>${F("wc","Qaybta",sel("wc",CATS,"licToggle()"))}${F("ws","Xirfadda",`<span id="wsw"><input id="ws"></span>`)}${F("wy","Khibrad (sano)",'<input id="wy" type="number" min="0" value="0">')}</div>
+<div class="form-section"><h4>📍 ${t("Goobta")}</h4><div class="form-grid">${F("wcountry","Dalka",`<select id="wcountry" onchange="updateSeekCities()">${COUNTRIES.map(c=>`<option value="${c}"${c==="Soomaaliya"?" selected":""}>${COUNTRY_FLAGS[c]} ${c}</option>`).join("")}</select>`)}${F("wcity","Magaalada",`<select id="wcity" onchange="toggleOtherCity('wcity','wcity_other')">${cityOptionsForm("Soomaaliya","")}</select>`)}</div><input id="wcity_other" placeholder="${t("Magaalada magaceeda qor")}" style="display:none;margin-top:8px"></div>
+<div class="form-section"><h4>⏱️ ${t("Waqtiga shaqada")}</h4><label>${t("Maalinta")}</label><div class="row wrap">${DAYS.map((d,i)=>`<label class="ck"><input type="checkbox" class="wdy" value="${i}">${t(d)}</label>`).join("")}</div>${timePicker("wf","08:00")}<div class="row wrap" style="margin-top:8px">${["Guri","Online","Goob"].map((m,i)=>`<label class="ck"><input type="checkbox" class="wm" value="${m}"${i?"":" checked"}>${t(m)}</label>`).join("")}</div></div>
+<div class="form-section"><h4>🩸 ${t("Dhiig")}</h4>${F("wbt","Nooca dhiigaaga",sel("wbt",[["?","Ma aqaano"],...BT]))}<label class="ck"><input type="checkbox" id="wdn">${t("Waan samafali karaa dhiig")}</label><div id="lic" hidden><div class="warn"><b>⚠️ ${t("Digniin")}:</b> ${t("Caafimaad")} / ${t("Engineer")} / ${t("Qareen")}</div></div></div>
+<div class="form-section"><h4>🩺 ${t("Xogta caafimaadka")}</h4><div class="health-panel">
+<div class="health-question"><p class="health-question-title">${t("Caafimaadkaagu ma fiican yahay?")}</p><div class="health-options">
+<label class="health-option"><input type="radio" name="whealth" id="whealth_yes" value="Haa" onchange="toggleHealthDetails()">${t("Haa")}</label>
+<label class="health-option"><input type="radio" name="whealth" id="whealth_no" value="Maya" onchange="toggleHealthDetails()">${t("Maya")}</label>
+</div></div>
+<div class="health-question"><p class="health-question-title">${t("Ma jiraa xanuun mararka qaar kugu soo noqnoqda?")}</p><div class="health-options">
+<label class="health-option"><input type="radio" name="wpain" id="wpain_yes" value="Haa" onchange="toggleHealthDetails()">${t("Haa")}</label>
+<label class="health-option"><input type="radio" name="wpain" id="wpain_no" value="Maya" onchange="toggleHealthDetails()">${t("Maya")}</label>
+</div></div>
+<div class="health-details" id="healthDetailsWrap" hidden><label for="whealthDetails">${t("Faahfaahi xaaladda caafimaadka")}</label><textarea id="whealthDetails" rows="3" placeholder="${t("Ku qor faahfaahinta halkan")}"></textarea></div>
+<div class="health-note"><span aria-hidden="true">🔒</span><span>${t("Xogtan waa xasaasi")}</span></div>
+</div></div>
+<div class="form-section"><h4>📷 ${t("Sawirka ID-gaaga")} & ${t("Shahaadada")}</h4><div class="s">Admin kaliya ayaa arka. Kaliya sawirka ayaa loo baahan yahay.</div>${F("wid","Sawirka ID-gaaga",`<input id="wid" type="file" accept="image/*" capture="environment" onchange="img(this,'id')"><img id="pv_id" class="pv" hidden>`)}${F("wcf","Shahaadada",`<input id="wcf" type="file" accept="image/*" onchange="img(this,'cert')"><img id="pv_cert" class="pv" hidden>`)}</div>
+<div class="form-section"><h4>👥 ${t("Magaca damiinka")}</h4>${F("gn","Magaca damiinka")}${F("gp","Telefoonka damiinka",'<input id="gp" type="tel">')}${F("gr","Xiriirka")}${F("gidf","Sawirka ID-ga damiinka",`<input id="gidf" type="file" accept="image/*" onchange="img(this,'gid')"><img id="pv_gid" class="pv" hidden>`)}</div>
+<div class="form-section"><h4>📋 ${t("Xeerka Anshaxa")}</h4><label class="ck"><input type="checkbox" id="pc">${t("Waxaan oggolahay")}</label><label class="ck"><input type="checkbox" id="wk">${t("Xeerka Anshaxa")}</label><label class="ck"><input type="checkbox" id="wot">${t("Terms of Service")} & ${t("Privacy Policy")}</label></div>
+<button class="p" style="width:100%;margin-top:16px" onclick="askAddW()">${t("Diiwaangeli")} →</button></div>`}
+function toggleHealthDetails(){
+  const well=document.querySelector('input[name="whealth"]:checked')?.value||"";
+  const pain=document.querySelector('input[name="wpain"]:checked')?.value||"";
+  const wrap=$("#healthDetailsWrap");
+  const showDetails=(well==="Maya"||pain==="Haa");
+  if(wrap)wrap.hidden=!showDetails;
+  if(!showDetails&&$("#whealthDetails"))$("#whealthDetails").value="";
+}
+
+function licToggle(){const c=$("#wc")?.value,g=$("#wg")?.value,k=TITLES[c];if($("#lic"))$("#lic").hidden=!LIC.includes(c);if($("#wsw"))$("#wsw").innerHTML=k?`<select id="ws">${k.map(x=>`<option>${x[g==="D"?1:0]}</option>`).join("")}</select>`:`<input id="ws">`}
+async function askAddW(){const n=$("#wn").value.trim(),p=$("#wp").value.trim(),c=$("#wc").value,s=$("#ws")?.value.trim()||"",L=LIC.includes(c),dl=[...document.querySelectorAll(".wdy:checked")].map(e=>+e.value);
+if(!n||!p||!s||!dl.length){toast(t("Digniin"));return}
+const healthWell=document.querySelector('input[name="whealth"]:checked')?.value||"";
+const healthPain=document.querySelector('input[name="wpain"]:checked')?.value||"";
+const healthDetails=$("#whealthDetails")?.value.trim()||"";
+if(!healthWell||!healthPain){toast(t("Fadlan buuxi xogta caafimaadka"));return}
+if((healthWell==="Maya"||healthPain==="Haa")&&!healthDetails){toast(t("Faahfaahinta caafimaadka waa loo baahan yahay"));return}
+if(!(await otpCheck($("#wp").value.trim(),$("#wo").value.trim()))){toast("OTP khalad / wrong OTP");return}if(!IMG.ph){toast(t("Sawirkaaga"));return}
+const area=getCityValue("wcity","wcity_other");if(!area){toast(t("Magaalada"));return}
+if(!IMG.id&&!($("#gn").value.trim()&&$("#gp").value.trim()&&IMG.gid)){toast(t("Sawirka ID-gaaga"));return}if(L&&!IMG.cert){toast(t("Shahaadada"));return}if(!$("#pc").checked||!$("#wk").checked||!$("#wot").checked){toast(t("Waxaan oggolahay"));return}
+modal(`<div class="warn danger"><b>⚠️ ${t("Digniin")}:</b> ${t("Waxaan oggolahay")}</div><div class="row" style="margin-top:16px"><button class="p" style="flex:1" onclick="addW()">${t("Waan fahmay")}</button><button class="o" onclick="closeM()">${t("Jooji")}</button></div>`)}
+function addW(){const n=$("#wn").value.trim(),p=$("#wp").value.trim(),c=$("#wc").value,s=$("#ws")?.value.trim()||"",L=LIC.includes(c),dl=[...document.querySelectorAll(".wdy:checked")].map(e=>+e.value),m=[...document.querySelectorAll(".wm:checked")].map(e=>e.value),bt=$("#wbt").value,wf=getTime("wf"),area=getCityValue("wcity","wcity_other"),country=$("#wcountry").value;
+S.workers.push({id:S.nid++,name:n,phone:p,cat:c,g:$("#wg").value,photo:IMG.ph,priv:{bt,idImg:IMG.id||"",cert:IMG.cert||"",health:{well:document.querySelector('input[name="whealth"]:checked')?.value||"",recurring:document.querySelector('input[name="wpain"]:checked')?.value||"",details:$("#whealthDetails")?.value.trim()||""},guar:{n:$("#gn").value.trim(),p:$("#gp").value.trim(),r:$("#gr").value.trim(),id:IMG.gid||""}},skill:s,area:area,country:country,yrs:+$("#wy").value||0,rating:0,n:0,mode:m.length?m:["Guri"],dl,from:wf,to:wf,level:L?3:1,lic:L,status:L?"sugaya":"ok",conduct:true});
+if($("#wdn").checked&&bt!=="?")S.donors.push({name:n,bt,area:area,phone:p});save();closeM();go(L?"dalab":"raadi");thanks(t("Mahadsanid"))}
+
+function vDhiig(){const m=bsel?S.donors.filter(d=>d.bt===bsel):[];return`<div class="page-header"><h1 class="page-title">🩸 ${t("Samafalka dhiigga")}</h1><p class="page-sub">${t("East Africa")}</p></div><div class="grid"><div class="card"><b>${t("Samafale ahow")}</b><div class="form-section">${F("dn","Magac")}${F("dp","Telefoon",'<input id="dp" type="tel">')}${F("db","Nooca dhiigaaga",sel("db",BT))}</div><div class="form-section"><h4>📍 ${t("Goobta")}</h4><div class="form-grid">${F("dcountry","Dalka",`<select id="dcountry" onchange="updateDonorCities()">${COUNTRIES.map(c=>`<option value="${c}"${c==="Soomaaliya"?" selected":""}>${COUNTRY_FLAGS[c]} ${c}</option>`).join("")}</select>`)}${F("dcity","Magaalada",`<select id="dcity" onchange="toggleOtherCity('dcity','dcity_other')">${cityOptionsForm("Soomaaliya","")}</select>`)}</div><input id="dcity_other" placeholder="${t("Magaalada magaceeda qor")}" style="display:none;margin-top:8px"></div><button class="p" style="margin-top:16px;width:100%" onclick="addDonor()">${t("Diiwaangeli")} →</button></div><div class="card"><b>${t("Dhiig degdeg ah")}</b>${F("bs","Nooca",`<select id="bs" onchange="bsel=this.value;render()"><option value="">—</option>${BT.map(b=>`<option${bsel===b?" selected":""}>${b}</option>`).join("")}</select>`)}${bsel?(m.length?m.map(d=>`<div class="card" style="margin:10px 0 0;background:var(--card2);box-shadow:none"><b style="font-size:14px">${esc(d.name)}</b> · <span class="tag r">${esc(d.bt)}</span><div class="s" style="margin-top:4px">${esc(d.area)} · ${esc(d.phone)}</div></div>`).join(""):`<p class="s" style="margin-top:10px">${t("Ma jiro natiijo")}</p>`):""}</div></div>`}
+function addDonor(){const n=$("#dn").value.trim(),p=$("#dp").value.trim(),area=getCityValue("dcity","dcity_other");if(!n||!p||!area){toast(t("Digniin"));return}S.donors.push({name:n,phone:p,bt:$("#db").value,area:area});save();render();thanks(t("Mahadsanid"))}
+
+function vDalab(){const b=[...S.bookings].reverse(),ap=S.apps.filter(a=>a.mine),mj=S.jobs.filter(j=>j.mine);return`<div class="page-header"><h1 class="page-title">📋 ${t("Dalabyo")}</h1></div>`+(b.map(x=>{const w=S.workers.find(k=>k.id===x.wid)||{name:"—",skill:"—",phone:"—"};const n=NEXT[x.status];return`<div class="card"><div class="row sp"><b>${esc(w.name)}</b><span class="tag g">${esc(x.status)}</span></div><div class="s">${esc(w.skill)} · ${esc(x.d)} ${to12h(x.t)} · ${esc(x.h)}</div><div class="s">${esc(x.a)}</div><div class="s">📞 ${esc(x.phone||w.phone||"…")}</div><div class="row wrap" style="margin-top:12px">${n?`<button class="p" onclick="step(${x.id})">${t(n[0])}</button>`:"<span class=\"s\">✓</span>"}${x.status==="dhammaaday"?`<button class="o" onclick="report(${x.id})">${t("Report")}</button>`:""}</div></div>`}).join("")||`<div class="card" style="text-align:center;padding:40px"><p class="s">${t("Dalab ma jiro")}</p></div>`)+`<h2>${t("Dalab shaqo")}</h2>`+(ap.map(a=>`<div class="card"><b>${esc((S.jobs.find(j=>j.id===a.jid)||{title:"—"}).title)}</b><div class="s">${esc(a.name)} · ${esc(a.phone)}</div></div>`).join("")||`<p class="s">${t("Codsi ma jiro")}</p>`)+`<h2>${t("Dalab shaqaale")}</h2>`+(mj.map(j=>`<div class="card"><b>${esc(j.title)}</b><div class="s">${esc(j.org)} · ${S.apps.filter(a=>a.jid===j.id).length}</div></div>`).join("")||`<p class="s">${t("Wax sugaya ma jiraan")}</p>`)}
+function step(id){const x=S.bookings.find(k=>k.id===id),n=NEXT[x.status];if(!n)return;if(n[1]==="rate"){modal(`<h2>${t("Qiimee shaqaalaha")}</h2><div class="row wrap" style="margin-top:16px;gap:8px">${[1,2,3,4,5].map(i=>`<button class="p" onclick="rate(${id},${i})" style="flex:1;padding:16px">${i} ★</button>`).join("")}</div>`);return}x.status=n[1];save();render();if(n[1]==="dhammaaday")thanks(t("Mahadsanid"))}
+function rate(id,n){const x=S.bookings.find(k=>k.id===id),w=S.workers.find(k=>k.id===x.wid);if(!w)return;w.rating=(w.rating*w.n+n)/(w.n+1);w.n++;x.status="la qiimeeyay";save();closeM();render();thanks(t("Mahadsanid"))}
+function report(id){S.reqs.push({t:new Date().toLocaleString(),note:"Report #"+id});save();toast(t("Report"))}
+
+function privHtml(w){const p=w.priv;if(!p)return"";const im=s=>s?`<img class="pv" src="${s}">`:"";const h=p.health;return`<div class="s" style="margin-top:8px">Blood: ${esc(p.bt)}</div>${h?`<div class="health-note" style="margin-top:10px"><span aria-hidden="true">🩺</span><span><b>${t("Xogta caafimaadka")}</b><br>${t("Caafimaadkaagu ma fiican yahay?")} ${t(h.well||"—")}<br>${t("Ma jiraa xanuun mararka qaar kugu soo noqnoqda?")} ${t(h.recurring||"—")}${h.details?`<br><b>${t("Faahfaahi xaaladda caafimaadka")}:</b> ${esc(h.details)}`:""}</span></div>`:""}<div>${im(w.photo)}${im(p.idImg)}${im(p.cert)}${im(p.guar?.id)}</div><div class="s">Guarantor: ${esc(p.guar?.n)||"—"}</div>`}
+function vAdmin(){const p=S.workers.filter(w=>w.status==="sugaya");return`<div class="page-header"><h1 class="page-title">⚙️ ${t("Admin")}</h1></div><div class="grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:16px">${[["Shaqaale",S.workers.filter(w=>w.status==="ok").length],["Shaqooyin",S.jobs.length],["Dalabyo",S.bookings.length],["Codsiyo",S.apps.length],["SOS",S.sos.length],["Reports",S.reqs.length]].map(x=>`<div class="stat-card"><div class="n">${x[1]}</div><div class="l">${t(x[0])}</div></div>`).join("")}</div><h2>${t("Xaqiijin sugaysa")}</h2>${p.map(w=>`<div class="card"><b>${esc(w.name)}</b> · ${esc(w.skill)} · ${COUNTRY_FLAGS[w.country]||""} ${esc(w.country)}${privHtml(w)}<div class="row" style="margin-top:12px"><button class="p" onclick="appr(${w.id},1)">✓ ${t("Ogolow")}</button><button class="o" onclick="appr(${w.id},0)">✗ ${t("Diid")}</button></div></div>`).join("")||`<p class="s">${t("Wax sugaya ma jiraan")}</p>`}<h2>${t("Profiles (xogta gaarka ah)")}</h2>${S.workers.filter(w=>w.priv&&w.status==="ok").map(w=>`<div class="card"><b>${esc(w.name)}</b> · ${esc(w.skill)}${privHtml(w)}</div>`).join("")||`<p class="s">${t("Wax sugaya ma jiraan")}</p>`}<h2>${t("SOS / reports")}</h2>${[...S.sos,...S.reqs].reverse().map(s=>`<div class="card" style="border-color:rgba(198,40,40,.4);background:var(--redbg)"><b style="color:var(--red)">${esc(s.who||"Report")}</b> <span class="s">${esc(s.t)}</span><div>${esc(s.note)}</div></div>`).join("")||`<p class="s">${t("Wax sugaya ma jiraan")}</p>`}<button class="o" onclick="localStorage.removeItem('shaqo_v15');S=seed();render()">${t("Tirtir xogta demo")}</button>`}
+function appr(id,ok){const w=S.workers.find(x=>x.id===id);if(ok){w.status="ok";w.level=(w.priv?.idImg&&w.priv?.cert&&w.lic)?3:(w.priv?.guar?.n?2:1)}else S.workers=S.workers.filter(x=>x.id!==id);save();render()}
+
+function vDigniin(){return`<div class="page-header"><h1 class="page-title">⚠️ ${t("Digniin")}</h1></div>
+<div class="warn danger"><b>🚨 1.</b> ${t("Ha bixin lacag hore")}</div>
+<div class="warn"><b>⚠️ 2.</b> ${t("Xeerka Anshaxa")}</div>
+<div class="warn"><b>⚠️ 3.</b> ${t("Macalin")}</div>
+<div class="warn"><b>⚠️ 4.</b> ${t("Dheddig")}</div>
+<div class="warn danger"><b>⚠️ 5.</b> ${t("Caafimaad")}</div>
+<div class="warn danger"><b>⚠️ 6.</b> ${t("Engineer")}</div>
+<div class="warn"><b>⚠️ 7.</b> ${t("Darawal")}</div>
+<div class="warn"><b>⚠️ 8.</b> ${t("Dhiig")}</div>
+<div class="warn"><b>⚠️ 9.</b> ${t("Xeerka Anshaxa")}</div>
+<div class="warn danger"><b>🚨 10.</b> ${t("Dir")}</div>
+<h2>📄 ${t("Terms of Service")}</h2><div class="card"><button class="o" style="width:100%;margin-bottom:10px" onclick="tos()">📄 ${t("Terms of Service")}</button><button class="o" style="width:100%;margin-bottom:10px" onclick="privacy()">🔒 ${t("Privacy Policy")}</button><button class="o" style="width:100%" onclick="conduct()">📋 ${t("Xeerka Anshaxa")}</button></div>`}
+function tos(){modal(`<h2>📄 ${t("Terms of Service")}</h2><div class="card"><p class="s">${t("Ha bixin lacag hore")}</p><p class="s">${t("Xeerka Anshaxa")}</p></div><button class="p" onclick="closeM()" style="width:100%;margin-top:12px">${t("Waa hagaag")}</button>`)}
+function privacy(){modal(`<h2>🔒 ${t("Privacy Policy")}</h2><div class="card"><p class="s">${t("Sawirka ID-gaaga")}</p><p class="s">${t("Shahaadada")}</p><p class="s">${t("Xogta caafimaadka")}: ${t("Xogtan waa xasaasi")}</p></div><button class="p" onclick="closeM()" style="width:100%;margin-top:12px">${t("Waa hagaag")}</button>`)}
+function conduct(){modal(`<h2>📋 ${t("Xeerka Anshaxa")}</h2><div class="card"><ol style="padding-left:20px;line-height:1.7"><li>${t("Ha bixin lacag hore")}</li><li>${t("Xeerka Anshaxa")}</li></ol></div><button class="p" onclick="closeM()" style="width:100%;margin-top:12px">${t("Waa hagaag")}</button>`)}
+function sosOpen(){modal(`<h2 style="color:var(--red)">🚨 SOS</h2><p style="text-align:center;font-size:14px;margin:16px 0">📞 888 · 🚑 112</p>${F("sn","Fariin (ikhtiyaari)",'<textarea id="sn"></textarea>')}<div class="row" style="margin-top:16px"><button class="d" style="flex:1" onclick="sosSend()">${t("Dir")}</button><button class="o" onclick="closeM()">${t("Xir")}</button></div>`)}
+function sosSend(){S.sos.push({t:new Date().toLocaleString(),who:"User",note:$("#sn").value||"SOS"});save();closeM();toast(t("Fariin la diray"))}
+
+
+const PH="data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 60"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#157A62"/><stop offset="1" stop-color="#0E5C4A"/></linearGradient></defs><rect width="80" height="60" fill="url(#g)"/><circle cx="40" cy="25" r="9" fill="#ffffff" fill-opacity=".35"/><path d="M18 60c2-14 12-20 22-20s20 6 22 20z" fill="#ffffff" fill-opacity=".35"/></svg>');
+document.addEventListener("error",e=>{const i=e.target;if(i&&i.tagName==="IMG"&&!i.dataset.f){i.dataset.f=1;i.src=PH}},true);
+if("serviceWorker"in navigator&&/^https?:/.test(location.protocol)){addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))}
+let dip=null;const standalone=matchMedia("(display-mode: standalone)").matches||navigator.standalone;
+addEventListener("beforeinstallprompt",e=>{e.preventDefault();dip=e});
+if(!standalone){const b=$("#inst");b.hidden=false;b.onclick=()=>{if(dip){dip.prompt();dip=null}else modal(`<h2>📲 App</h2><p><b>Android (Chrome):</b> ⋮ → Install app / Add to Home screen.</p><p><b>iPhone (Safari):</b> Share ⬆ → Add to Home Screen.</p><button class="p" onclick="closeM()" style="width:100%">OK</button>`)}}
+addEventListener("online",()=>toast("✅ Online"));addEventListener("offline",()=>toast("📴 Offline"));
+
+/* ===== COUNTRY DIAL CODES ===== */
+const DIAL={"Soomaaliya":"252","Kenya":"254","Itoobiya":"251","Jabuuti":"253","Tanzania":"255","Uganda":"256"},DIALS=Object.values(DIAL),PHSEL={wp:"wcountry",gp:"wcountry",dp:"dcountry",jp:"jcountry"};let LASTC="Soomaaliya";
+const dialFor=id=>{const e=PHSEL[id]&&$("#"+PHSEL[id]);if(e&&DIAL[e.value])LASTC=e.value;return DIAL[(e&&e.value)||LASTC]||"252"};
+function normPhone(v,d){let x=String(v||"").replace(/[^\d+]/g,"");if(!x||x==="+")return"";if(x.startsWith("00"))x="+"+x.slice(2);if(x[0]==="+"){const g=x.slice(1).replace(/\D/g,"");return"+"+g}let g=x.replace(/\D/g,"");if(g[0]==="0")g=g.slice(1);else if(g.startsWith(d)&&g.length>=d.length+8)return"+"+g;return"+"+d+g}
+function setDial(pid){const p=$("#"+pid);if(!p)return;const d=dialFor(pid),cur=p.value.trim().replace(/\s/g,"");if(!cur||/^\+\d{1,4}$/.test(cur)||DIALS.some(k=>cur.startsWith("+"+k)&&cur.length<=k.length+1+2)){p.value="+"+d+" "}else if(cur.startsWith("+")){const old=DIALS.find(k=>cur.startsWith("+"+k));if(old&&old!==d)p.value="+"+d+cur.slice(old.length+1)}p.placeholder="+"+d+" …"}
+document.addEventListener("change",e=>{const id=e.target.id;for(const p in PHSEL)if(PHSEL[p]===id)setDial(p)});
+document.addEventListener("focusin",e=>{const t=e.target;if(t.tagName==="INPUT"&&t.type==="tel"&&!t.value.trim())setDial(t.id)});
+document.addEventListener("focusout",e=>{const t=e.target;if(t.tagName==="INPUT"&&t.type==="tel"&&t.value.trim()){t.value=normPhone(t.value,dialFor(t.id))}});
+/* ===== ACCOUNT DELETE ===== */
+function delAcc(id){modal(`<h2>🗑 Tirtir akoonka</h2><p>Profile-kaaga, dalabyada iyo xogtaada gaarka ah server-ka waa laga tirtirayaa, lagamana celin karo.</p><div class="row"><button class="d" style="flex:1" onclick="delGo(${id})">Haa, tirtir / Yes, delete</button><button class="o" onclick="closeM()">Jooji</button></div>`)}
+async function delGo(id){try{await api("delete",{c:"workers",id,token:tokGet()["workers:"+id]});S.workers=S.workers.filter(w=>w.id!==id);const o=tokGet();delete o["workers:"+id];localStorage.setItem("shaqo_tok",J_(o));_save();closeM();render();toast("✅ Akoonka waa la tirtiray")}catch(e){toast("Error")}}
+/* ===== BACKEND LAYER (shared data when server.py is running; otherwise local demo mode) ===== */
+const J_=x=>JSON.stringify(x);
+let ONLINE=false,ADM=null,KEY="",snap={},syncT=null,INBOX={bookings:[],apps:[]};const OTPP={};
+const tokGet=()=>{try{return JSON.parse(localStorage.getItem("shaqo_tok")||"{}")}catch(e){return{}}},tokSet=(c,i,t)=>{try{const o=tokGet();o[c+":"+i]=t;localStorage.setItem("shaqo_tok",J_(o))}catch(e){}},tokList=()=>Object.entries(tokGet()).map(([k,t])=>{const[c,i]=k.split(":");return{c,id:+i,token:t}});
+const SYNC=["workers","jobs","donors","bookings","apps","sos","reqs"];
+const api=async(p,b)=>{const r=await fetch("/api/"+p,b?{method:"POST",headers:{"Content-Type":"application/json"},body:J_(b)}:{});if(!r.ok)throw new Error(r.status);return r.json()};
+function fixNid(){try{Object.defineProperty(S,"nid",{configurable:true,enumerable:false,get(){return Date.now()*1000+Math.floor(Math.random()*1000)},set(){}})}catch(e){}}
+const _save=save,_render=render,_vAdmin=vAdmin,_appr=appr;
+save=function(){_save();fixNid();clearTimeout(syncT);syncT=setTimeout(flush,400)};
+render=function(){fixNid();return _render()};
+async function flush(){if(!ONLINE)return;let ch=0;for(const c of SYNC){for(const it of(S[c]||[])){if(it.id==null){it.id=S.nid++;ch=1}if(c==="workers"&&it.priv&&OTPP[it.phone])it.otpProof=OTPP[it.phone];let j=J_(it);if(snap[c]&&snap[c][it.id]===j)continue;try{const r=await api("push",{coll:c,item:it});delete it.otpProof;if(r.token)tokSet(c,it.id,r.token);if(r.phone){it.phone=r.phone;ch=1}j=J_(it);(snap[c]=snap[c]||{})[it.id]=j}catch(e){if(String(e.message)==="400"){delete it.otpProof;(snap[c]=snap[c]||{})[it.id]=J_(it)}}}}if(ch)_save();loadInbox()}
+async function pull(){let d;try{S.donors.forEach(x=>{if(x.id==null)x.id=S.nid++});d=await api("state?mine="+S.workers.filter(w=>w.status==="sugaya").map(w=>w.id).join(",")+"&bk="+S.bookings.filter(b=>b.status!=="la qiimeeyay").map(b=>b.id).join(","))}catch(e){ONLINE=false;return}
+ONLINE=true;if(d.empty){snap={};await flush();return}
+const before=J_([S.workers,S.jobs,S.donors]),loc=new Map(S.workers.map(w=>[w.id,w])),ids=new Set(d.workers.map(w=>w.id)),ws=d.workers.map(w=>{const l=loc.get(w.id);if(l&&l.priv)w.priv=l.priv;return w});
+S.workers.forEach(w=>{if(ids.has(w.id))return;const m=d.mineStatus[w.id];if(m){if(m.status==="sugaya")ws.push(w);else if(m.status==="ok"){w.status="ok";w.level=m.level;ws.push(w)}}else if(!(snap.workers&&snap.workers[w.id]!==undefined))ws.push(w)});
+const mg=(c,srv)=>{const L=new Map((S[c]||[]).map(x=>[x.id,x])),sid=new Set(srv.map(x=>x.id));srv.forEach(x=>{const l=L.get(x.id);if(l&&l.mine)x.mine=1});(S[c]||[]).forEach(x=>{if(x.id!=null&&!sid.has(x.id)&&!(snap[c]&&snap[c][x.id]!==undefined))srv.push(x)});return srv};
+S.bookings.forEach(b=>{const s2=d.bookingStatus&&d.bookingStatus[b.id];if(s2&&b.status==="sugaya"&&(s2==="aqbalay"||s2==="diiday"))b.status=s2});const sj=mg("jobs",d.jobs),sd=mg("donors",d.donors);S.workers=ws;S.jobs=sj;S.donors=sd;
+[["workers",d.workers],["jobs",d.jobs],["donors",d.donors]].forEach(([c,a])=>{snap[c]=snap[c]||{};const k=new Set(a.map(x=>x.id));S[c].forEach(x=>{if(k.has(x.id))snap[c][x.id]=J_(x)})});
+_save();if(J_([S.workers,S.jobs,S.donors])!==before&&["welcome","raadi","jobs","dhiig"].includes(view)&&$("#modal").hidden&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName))render();flush()}
+async function sendOtp(){const p=normPhone($("#wp").value,dialFor("wp"));$("#wp").value=p;if(!p){toast("Telefoon geli");return}if(!ONLINE){toast("OTP demo: 1234");return}try{const r=await api("otp/send",{phone:p});toast(r.code?"OTP (dev): "+r.code:"OTP waa la diray / sent")}catch(e){toast("OTP error ("+e.message+")")}}
+async function otpCheck(p,c){if(!ONLINE)return c==="1234";try{const r=await api("otp/verify",{phone:p,code:c});OTPP[p]=r.proof;return true}catch(e){return false}}
+async function loadInbox(){const tk=tokList();if(!ONLINE||!tk.length)return;try{const r=await api("inbox",{tokens:tk}),n=r.bookings.filter(b=>b.status==="sugaya").length+r.apps.length,o=INBOX.bookings.filter(b=>b.status==="sugaya").length+INBOX.apps.length;INBOX=r;if(n>o)toast("📥 Dalab cusub / New request");if(view==="dalab"&&$("#modal").hidden&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName))render()}catch(e){}}
+async function inAct(id,st,wid){const t=tokGet()["workers:"+wid];try{await api("act",{id,token:t,status:st});await loadInbox();render()}catch(e){toast("Error")}}
+function inboxHtml(){if(!INBOX.bookings.length&&!INBOX.apps.length)return"";const B=INBOX.bookings.map(b=>{const w=S.workers.find(k=>k.id===b.wid)||{};return`<div class="card"><div class="row sp"><b>📥 ${esc(b.rn||"?")}</b><span class="tag g">${esc(b.status)}</span></div><div class="s">${esc(w.skill||"")} · ${esc(b.d)} ${to12h(b.t)} · ${esc(b.h)}</div><div class="s">${esc(b.a)}</div><div class="s">📞 <a href="tel:${esc(b.rp)}">${esc(b.rp)}</a></div>${b.status==="sugaya"?`<div class="row" style="margin-top:12px"><button class="p" onclick="inAct(${b.id},'aqbalay',${b.wid})">✓ Aqbal</button><button class="o" onclick="inAct(${b.id},'diiday',${b.wid})">✕ Diid</button></div>`:""}</div>`}).join(""),A=INBOX.apps.map(a=>{const j=S.jobs.find(k=>k.id===a.jid)||{};return`<div class="card"><b>👤 ${esc(a.name)}</b> <span class="s">→ ${esc(j.title||"")}</span><div class="s">📞 <a href="tel:${esc(a.phone)}">${esc(a.phone)}</a></div>${a.note?`<div class="s">${esc(a.note)}</div>`:""}</div>`}).join("");return`<h2 style="margin:8px 0 12px">📥 Inbox</h2>${B}${A}<h2 style="margin:20px 0 12px">📤 ${t("Dalabyo")}</h2>`}
+const _vDalab=vDalab;vDalab=function(){let sv;if(ONLINE){sv=NEXT.sugaya;NEXT.sugaya=undefined}let h;try{h=_vDalab()}finally{if(ONLINE)NEXT.sugaya=sv}const ws=Object.keys(tokGet()).filter(k=>k.startsWith("workers:")).map(k=>+k.split(":")[1]).filter(i=>S.workers.some(w=>w.id===i)),dl=ws.map(i=>`<div class="card"><div class="s">${esc((S.workers.find(w=>w.id===i)||{}).name||"")}</div><button class="o" onclick="delAcc(${i})">🗑 Tirtir akoonka / Delete account</button></div>`).join("");return inboxHtml()+h+dl};
+vAdmin=function(){if(!ONLINE)return _vAdmin();if(!ADM)return`<div class="page-header"><h1 class="page-title">⚙️ Admin</h1></div><div class="card"><label for="ak">Admin key</label><input id="ak" type="password" autocomplete="off"><button class="p" style="width:100%;margin-top:12px" onclick="admLogin()">Gal / Login</button></div>`;
+const b={};SYNC.forEach(c=>{b[c]=S[c];S[c]=ADM[c]||[]});try{return _vAdmin()}finally{SYNC.forEach(c=>S[c]=b[c])}};
+async function admLogin(){KEY=$("#ak").value;try{ADM=await api("admin",{key:KEY,action:"list"});render()}catch(e){ADM=null;toast("Admin key khalad / wrong key")}}
+appr=async function(id,ok){if(!ONLINE||!ADM)return _appr(id,ok);try{ADM=await api("admin",{key:KEY,action:ok?"approve":"reject",id})}catch(e){toast("Error");return}render()};
+updateBrand();updatePromoText();render();
+fixNid();pull();setInterval(()=>{if(!document.hidden){pull();flush()}},30000);document.addEventListener("visibilitychange",()=>{if(!document.hidden)pull()});
+</script></body></html>

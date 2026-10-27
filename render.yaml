@@ -1,0 +1,22 @@
+# Render.com blueprint (Docker + disk joogto ah). New -> Blueprint -> repo-gaaga.
+services:
+  - type: web
+    name: shaqo
+    runtime: docker
+    plan: starter
+    healthCheckPath: /api/health
+    envVars:
+      - key: ADMIN_KEY
+        sync: false          # geli gacanta dashboard-ka Render
+      - key: OTP_MODE
+        value: dev           # u beddel sms marka aad geliso AT_* furayaasha
+      - key: AT_USERNAME
+        sync: false
+      - key: AT_API_KEY
+        sync: false
+      - key: DB_PATH
+        value: /data/shaqo.db
+    disk:
+      name: shaqo-data
+      mountPath: /data
+      sizeGB: 1
