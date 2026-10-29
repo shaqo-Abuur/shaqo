@@ -353,7 +353,7 @@ function updateDonorCities(){const c=$("#dcountry")?.value;const cd=$("#dcity");
 // =============================================================
 function render(){updateBrand();$("#lg").value=lang;const tabs=TABS[role]||TABS.guest;
 $("#nav").innerHTML=tabs.map(x=>`<button class="${view===x[0]?"on":""}" onclick="go('${x[0]}')">${t(x[1])}</button>`).join("");
-$("#app").innerHTML=({welcome:vWelcome,raadi:vRaadi,jobs:vJobs,hire:vHire,seek:vSeek,dhiig:vDhiig,dalab:vDalab,digniin:vDigniin,admin:vAdmin})[view]()+`<footer>${t("Hal-abuure")}: <b>Abdullahi M. Kulane</b> · Tel <a href="tel:+252615128202">+252615128202</a><br><button onclick="tos()">${t("Terms of Service")}</button> · <button onclick="privacy()">${t("Privacy Policy")}</button> · <button onclick="conduct()">${t("Xeerka Anshaxa")}</button></footer>`;if(view==="raadi")list();window.scrollTo(0,0)}
+$("#app").innerHTML=({welcome:vWelcome,raadi:vRaadi,jobs:vJobs,hire:vHire,seek:vSeek,dhiig:vDhiig,dalab:vDalab,digniin:vDigniin,admin:vAdmin})[view]()+`<footer>${t("Hal-abuure")}: <b>Abdullahi M. Kulane</b> · Tel <a href="tel:+252615128202">+252615128202</a><br><button onclick="tos()">${t("Terms of Service")}</button> · <button onclick="privacy()">${t("Privacy Policy")}</button> · <button onclick="conduct()">${t("Xeerka Anshaxa")}</button> · <button onclick="go('admin')">⚙️ Admin</button></footer>`;if(view==="raadi")list();window.scrollTo(0,0)}
 const DEMO_PHOTOS=[
 "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=180&h=180&q=82",
 "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=180&h=180&q=82",
@@ -573,7 +573,7 @@ save=function(){_save();fixNid();clearTimeout(syncT);syncT=setTimeout(flush,400)
 render=function(){fixNid();return _render()};
 async function flush(){if(!ONLINE)return;let ch=0;for(const c of SYNC){for(const it of(S[c]||[])){if(it.id==null){it.id=S.nid++;ch=1}if(c==="workers"&&it.priv&&OTPP[it.phone])it.otpProof=OTPP[it.phone];let j=J_(it);if(snap[c]&&snap[c][it.id]===j)continue;try{const r=await api("push",{coll:c,item:it});delete it.otpProof;if(r.token)tokSet(c,it.id,r.token);if(r.phone){it.phone=r.phone;ch=1}j=J_(it);(snap[c]=snap[c]||{})[it.id]=j}catch(e){if(String(e.message)==="400"){delete it.otpProof;(snap[c]=snap[c]||{})[it.id]=J_(it)}}}}if(ch)_save();loadInbox()}
 async function pull(){let d;try{S.donors.forEach(x=>{if(x.id==null)x.id=S.nid++});d=await api("state?mine="+S.workers.filter(w=>w.status==="sugaya").map(w=>w.id).join(",")+"&bk="+S.bookings.filter(b=>b.status!=="la qiimeeyay").map(b=>b.id).join(","))}catch(e){ONLINE=false;return}
-ONLINE=true;if(d.empty){snap={};await flush();return}
+{const was=ONLINE;ONLINE=true;if(!was&&view==="admin")render()}if(d.empty){snap={};await flush();return}
 const before=J_([S.workers,S.jobs,S.donors]),loc=new Map(S.workers.map(w=>[w.id,w])),ids=new Set(d.workers.map(w=>w.id)),ws=d.workers.map(w=>{const l=loc.get(w.id);if(l&&l.priv)w.priv=l.priv;return w});
 S.workers.forEach(w=>{if(ids.has(w.id))return;const m=d.mineStatus[w.id];if(m){if(m.status==="sugaya")ws.push(w);else if(m.status==="ok"){w.status="ok";w.level=m.level;ws.push(w)}}else if(!(snap.workers&&snap.workers[w.id]!==undefined))ws.push(w)});
 const mg=(c,srv)=>{const L=new Map((S[c]||[]).map(x=>[x.id,x])),sid=new Set(srv.map(x=>x.id));srv.forEach(x=>{const l=L.get(x.id);if(l&&l.mine)x.mine=1});(S[c]||[]).forEach(x=>{if(x.id!=null&&!sid.has(x.id)&&!(snap[c]&&snap[c][x.id]!==undefined))srv.push(x)});return srv};
@@ -591,5 +591,5 @@ const b={};SYNC.forEach(c=>{b[c]=S[c];S[c]=ADM[c]||[]});try{return _vAdmin()+mgm
 async function admLogin(){KEY=$("#ak").value;try{ADM=await api("admin",{key:KEY,action:"list"});render()}catch(e){ADM=null;toast("Admin key khalad / wrong key")}}
 appr=async function(id,ok){if(!ONLINE||!ADM)return _appr(id,ok);try{ADM=await api("admin",{key:KEY,action:ok?"approve":"reject",id})}catch(e){toast("Error");return}render()};
 updateBrand();updatePromoText();render();
-fixNid();pull();setInterval(()=>{if(!document.hidden){pull();flush()}},30000);document.addEventListener("visibilitychange",()=>{if(!document.hidden)pull()});
+fixNid();if(/admin/i.test(location.hash+location.search))go("admin");addEventListener("hashchange",()=>{if(/admin/i.test(location.hash))go("admin")});pull();setInterval(()=>{if(!document.hidden){pull();flush()}},30000);document.addEventListener("visibilitychange",()=>{if(!document.hidden)pull()});
 </script></body></html>
