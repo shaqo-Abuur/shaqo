@@ -177,6 +177,9 @@ def act(b):
 def delete_account(b):
     c, i = b.get("c"), b.get("id")
     if c not in ("workers", "jobs") or not tok_ok(c, i, b.get("token")): return False
+    remove(c, i); return True
+
+def remove(c, i):
     with lock:
         db.execute("delete from docs where c=? and id=?", (c, str(i)))
         for row in db.execute("select id,c,d from docs where c in ('bookings','apps')").fetchall():
@@ -184,7 +187,21 @@ def delete_account(b):
             if (c == "workers" and d.get("wid") == int(i)) or (c == "jobs" and d.get("jid") == int(i)):
                 db.execute("delete from docs where c=? and id=?", (row[1], row[0]))
         db.execute("delete from tokens where c=? and id=?", (c, str(i))); db.commit()
-    return True
+
+EDIT = {"workers": {"name": str, "skill": str, "level": int, "status": str},
+        "jobs": {"title": str, "org": str, "area": str, "sched": str, "d": str, "n": int}}
+def admin_edit(c, i, fields):
+    it = get(c, i)
+    if c not in EDIT or not it or not isinstance(fields, dict): return False
+    for k, typ in EDIT[c].items():
+        if k not in fields: continue
+        v = fields[k]
+        try: v = int(v) if typ is int else str(v)[:300]
+        except Exception: continue
+        if k == "level" and v not in (1, 2, 3): continue
+        if k == "status" and v not in ("ok", "sugaya", "suspended", "rejected"): continue
+        it[k] = v
+    put(c, it); return True
 
 def seed_db():
     p = os.path.join(ROOT, "seed.json")
@@ -258,6 +275,8 @@ class H(BaseHTTPRequestHandler):
                     if act_ == "approve": w["status"], w["level"] = "ok", level(w)
                     else: w["status"] = "rejected"
                     put("workers", w)
+            if act_ == "edit": admin_edit(body.get("c"), i, body.get("fields"))
+            if act_ == "delete" and body.get("c") in ("workers", "jobs", "donors"): remove(body["c"], i)
             return self.out(200, {c: [x for x in rows(c) if not (c == "workers" and x.get("status") == "rejected")] for c in COLL})
         self.out(404, {"error": "not found"})
 

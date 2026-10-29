@@ -42,6 +42,15 @@ try:
     check("worker accepts booking", post("/api/act", {"id": bk["id"], "token": tok, "status": "aqbalay"})[0] == 200)
     post("/api/push", {"coll": "bookings", "item": {**bk, "status": "dhammaaday"}})
     check("booker cannot skip steps", get("/api/state?bk=%d" % bk["id"])["bookingStatus"][str(bk["id"])] == "aqbalay")
+    sid = get("/api/state")["workers"][0]["id"]
+    post("/api/admin", {"key": KEY, "action": "edit", "c": "workers", "id": sid, "fields": {"name": "Edited Name", "level": 2, "phone": "hack", "status": "bogus"}})
+    ew = [x for x in get("/api/state")["workers"] if x["id"] == sid][0]
+    check("admin edit whitelists fields", ew["name"] == "Edited Name" and ew["level"] == 2 and "phone" not in ew and ew["status"] == "ok")
+    post("/api/admin", {"key": KEY, "action": "edit", "c": "workers", "id": sid, "fields": {"status": "suspended"}})
+    check("suspended worker hidden from public", not any(x["id"] == sid for x in get("/api/state")["workers"]))
+    post("/api/admin", {"key": KEY, "action": "delete", "c": "workers", "id": sid})
+    check("admin delete removes worker", all(x["id"] != sid for x in post("/api/admin", {"key": KEY, "action": "list"})[1]["workers"]))
+    check("edit/delete need admin key", post("/api/admin", {"key": "x", "action": "delete", "c": "workers", "id": 1})[0] == 403)
     check("delete needs the token", post("/api/delete", {"c": "workers", "id": W["id"], "token": "bad"})[0] == 403)
     check("owner deletes account + its bookings", post("/api/delete", {"c": "workers", "id": W["id"], "token": tok})[0] == 200 and
           all(x["id"] != W["id"] for x in post("/api/admin", {"key": KEY, "action": "list"})[1]["workers"]) and
