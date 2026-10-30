@@ -1,0 +1,17 @@
+You are a senior full-stack engineer reviewing the Shaqo project. Use the supplied repository files as the source of truth. I have provided an integrated patch based on my real frontend files: `frontend/index.html`, `_headers`, `manifest.webmanifest`, `sw.js`, plus `backend/server.py` and `backend/seed.json`.
+
+Do not redesign the interface or rebuild the app. Preserve the current Somali, English, Kiswahili, French and Amharic support and existing features. First inspect the entire repository, including Dockerfile, render.yaml, README and tests.
+
+Tasks:
+1. Check all frontend API calls against backend routes and request/response shapes.
+2. Verify job moderation: pending jobs must never appear in public job search before Admin approval.
+3. Verify booking lifecycle: customer booking token, worker accept/reject, customer status progression, and one-time rating. Confirm old bookings without tokens are handled safely.
+4. Verify OTP registration, production SMS configuration and the frontend/backend category list consistency.
+5. Verify donor public-consent behavior. Public responses must never expose donor phone numbers.
+6. Verify that worker phone numbers and private ID/health/guarantor data never appear in public API responses.
+7. Verify Admin authorization for listing, approval, rejection, edit and deletion.
+8. Check SQLite persistence on the actual deployment platform, migrations, backup/restore and concurrent writes.
+9. Review PWA files: manifest paths, icon assets, service-worker cache version and API caching behavior.
+10. Run Python compilation, JavaScript syntax checks and all automated tests. Add focused tests for authorization and privacy.
+
+Make only necessary, minimal changes. Never claim a test passed unless you ran it. Never invent payment gateway or subscription features. Report each finding as Critical, High, Medium or Low and list every changed file. Do not commit secrets.

@@ -19,18 +19,19 @@ FRONT = os.environ.get("FRONTEND_DIR") or next((d for d in (os.path.join(ROOT, "
                                                 if os.path.exists(os.path.join(d, "index.html"))), ROOT)
 DB = os.environ.get("DB_PATH", os.path.join(ROOT, "shaqo.db"))
 PORT = int(os.environ.get("PORT", "8080"))
-GENERATED = not os.environ.get("ADMIN_KEY")
-KEY = os.environ.get("ADMIN_KEY") or secrets.token_urlsafe(9)
+APP_ENV = os.environ.get("APP_ENV", "development").strip().lower()
+IS_PRODUCTION = APP_ENV == "production" or os.environ.get("RENDER", "").strip().lower() == "true"
+ADMIN_KEY_ENV = os.environ.get("ADMIN_KEY", "").strip()
 AT_USER, AT_KEY, AT_FROM = os.environ.get("AT_USERNAME"), os.environ.get("AT_API_KEY"), os.environ.get("AT_SENDER")
-OTP_MODE = os.environ.get("OTP_MODE") or ("sms" if AT_USER and AT_KEY else "dev")
-AI_KEY = os.environ.get("ANTHROPIC_API_KEY")
-AI_MODEL = os.environ.get("CHAT_MODEL", "claude-haiku-5-5")
-AI_BASE = os.environ.get("ANTHROPIC_BASE", "https://api.anthropic.com")
-SYSTEM = """You are the help assistant of "Shaqo", a jobs and skills marketplace app for East Africa (Somalia, Kenya, Ethiopia, Djibouti, Tanzania, Uganda).
-Answer ONLY questions about using Shaqo, briefly (max ~80 words), in the user's language (Somali, English, Kiswahili, French or Amharic).
-Facts: Job seekers use "Dalab shaqo" to register (phone + OTP code, photo, skill, area, days/hours, ID or a guarantor, consent). Registration is free. Employers/people use "Raadi" to find workers, "Fiiri & dalbo" to send a request (date, place, own name + phone); the worker accepts or declines from the Inbox in "Dalabyo", and only then the worker's phone is shown. "Dalab shaqaale" posts a job; job seekers apply from "Shaqooyin". The price of work is a private agreement between the two sides; the app shows no prices and takes no payment. Levels: 1 basic, 2 guarantor, 3 ID + certificate. Regulated professions (health, engineering) need certificate + licence and admin approval before they appear. "Dhiig" tab: register as blood donor or search donors by blood type. SOS button alerts the admin; in real danger contact local emergency services first. ID, certificates, guarantor, health and substance-use answers are private (admin only); users can delete their account in "Dalabyo". Languages: Somali, English, Kiswahili, Francais, Amharic. Installable as an app (Install / Add to Home Screen). Creator: Abdullahi M. Kulane, +252615128202.
-Never invent features, prices or legal/medical advice. If you do not know, say so and give the creator's contact. Never ask for passwords, ID numbers or keys."""
-LIC = {"Caafimaad", "Engineer"}
+OTP_MODE = (os.environ.get("OTP_MODE") or ("sms" if AT_USER and AT_KEY else "dev")).strip().lower()
+if IS_PRODUCTION:
+    if len(ADMIN_KEY_ENV) < 32:
+        raise RuntimeError("Production requires ADMIN_KEY with at least 32 characters.")
+    if OTP_MODE != "sms" or not AT_USER or not AT_KEY:
+        raise RuntimeError("Production requires OTP_MODE=sms, AT_USERNAME and AT_API_KEY.")
+GENERATED = not bool(ADMIN_KEY_ENV)
+KEY = ADMIN_KEY_ENV or secrets.token_urlsafe(24)
+LIC = {"Caafimaad", "Engineer", "Lataliye", "Qareen"}
 COLL = {"workers", "jobs", "donors", "bookings", "apps", "sos", "reqs"}
 RANK = {"sugaya": 0, "aqbalay": 1, "socda": 2, "dhammaaday": 3, "la qiimeeyay": 4}
 STATIC = {"/": "index.html", "/index.html": "index.html", "/manifest.webmanifest": "manifest.webmanifest",
@@ -71,7 +72,16 @@ def tok_ok(c, i, tok):
         r = db.execute("select h from tokens where c=? and id=?", (c, str(i))).fetchone()
     return bool(r) and hmac.compare_digest(r[0], sha(tok or ""))
 def pub(w):
-    w = dict(w); w.pop("priv", None); w.pop("phone", None); return w   # phone is revealed only after a booking
+    # Never expose worker phone numbers or private registration documents in public search.
+    w = dict(w); w.pop("priv", None); w.pop("phone", None); return w
+
+def pub_donor(d):
+    # A donor is listed only after an explicit public-listing opt-in.
+    if d.get("publicConsent") is not True:
+        return None
+    allowed = ("id", "name", "bt", "area", "country")
+    return {k: d[k] for k in allowed if k in d}
+
 def level(w):
     p = w.get("priv") or {}
     if p.get("idImg") and p.get("cert") and w.get("lic"): return 3
@@ -118,6 +128,7 @@ def push(c, it):
     it["id"] = int(it["id"])
     old = get(c, it["id"])
     proof = it.pop("otpProof", None)
+    auth_token = it.pop("authToken", None)
     if old is not None and c not in ("workers", "bookings"):
         return True, {}                                   # immutable once stored
     if c == "workers":
@@ -129,25 +140,40 @@ def push(c, it):
             it["level"], it["rating"], it["n"] = 1, 0, 0
             put(c, it)
             return True, {"token": new_token(c, it["id"])}
-        n, r = it.get("n"), it.get("rating")              # existing worker: only a +1 rating update
-        if isinstance(n, (int, float)) and isinstance(r, (int, float)) and n == old.get("n", 0) + 1 and 0 <= r <= 5:
-            old["n"], old["rating"] = n, r; put(c, old)
+        # Existing worker profiles are not writable through public push. Ratings go through /api/rate.
         return True, {}
     if c == "jobs":
-        it.pop("mine", None); put(c, it)
-        return True, {"token": new_token(c, it["id"])}
+        if old is not None:
+            return True, {"status": old.get("status", "ok")}
+        # New job posts are held for moderation before appearing in public search.
+        it.pop("mine", None)
+        it["status"] = "sugaya"
+        put(c, it)
+        return True, {"token": new_token(c, it["id"]), "status": "sugaya"}
     if c == "bookings":
         it.pop("mine", None)
         if old is None:
             w = get("workers", it.get("wid"))
             if not w or w.get("status") != "ok": return False, {}
             it["status"] = "sugaya"; put(c, it)
-            return True, {"phone": w.get("phone", "")}
+            # Return an owner token, never the worker's phone number.
+            return True, {"token": new_token(c, it["id"])}
+        if not tok_ok("bookings", it["id"], auth_token):
+            return False, {}
         a, b = RANK.get(old.get("status"), -1), RANK.get(it.get("status"), -1)
-        if a >= 1 and b == a + 1:                         # booker may only advance one step after acceptance
+        if a >= 1 and b == a + 1:
             old["status"] = it["status"]; put(c, old)
         return True, {}
-    if c == "apps": it.pop("mine", None)
+    if c == "apps":
+        it.pop("mine", None)
+        job = get("jobs", it.get("jid"))
+        if not job or job.get("status", "ok") != "ok": return False, {}
+        if not str(it.get("name", "")).strip() or len(str(it.get("phone", ""))) > 40:
+            return False, {}
+    if c == "donors":
+        # Public donor listing requires an explicit opt-in. The phone stays private.
+        if it.get("publicConsent") is not True or not str(it.get("phone", "")).strip() or not str(it.get("bt", "")).strip():
+            return False, {}
     put(c, it)
     return True, {}
 
@@ -161,15 +187,21 @@ def state(qs):
         if i.strip().isdigit():
             b = get("bookings", i.strip())
             if b: bs[i.strip()] = b.get("status")
-    return {"empty": count("workers") == 0 and count("jobs") == 0,
+    public_jobs = [j for j in rows("jobs") if j.get("status", "ok") == "ok"]
+    return {"empty": not any(count(c) for c in COLL),
             "workers": [pub(w) for w in rows("workers") if w.get("status") == "ok"],
-            "jobs": rows("jobs"), "donors": rows("donors"), "mineStatus": ms, "bookingStatus": bs}
+            "jobs": public_jobs, "donors": [pub_donor(d) for d in rows("donors")],
+            "mineStatus": ms, "bookingStatus": bs}
 
 def inbox(tokens):
     wids, jids = set(), set()
     for t in tokens[:50]:
-        if isinstance(t, dict) and tok_ok(t.get("c"), t.get("id"), t.get("token")):
-            (wids if t["c"] == "workers" else jids).add(int(t["id"]))
+        if not isinstance(t, dict):
+            continue
+        c = t.get("c")
+        if c not in ("workers", "jobs") or not tok_ok(c, t.get("id"), t.get("token")):
+            continue
+        (wids if c == "workers" else jids).add(int(t["id"]))
     bk = [b for b in rows("bookings") if b.get("wid") in wids]
     ap = [a for a in rows("apps") if a.get("jid") in jids]
     return {"bookings": bk[::-1], "apps": ap[::-1]}
@@ -186,6 +218,26 @@ def delete_account(b):
     if c not in ("workers", "jobs") or not tok_ok(c, i, b.get("token")): return False
     remove(c, i); return True
 
+def rate_booking(b):
+    """Rate a worker only once a booking has reached completed status."""
+    i, score, token = b.get("id"), b.get("score"), b.get("token")
+    if not isinstance(i, (int, float)) or not isinstance(score, (int, float)) or score < 1 or score > 5:
+        return False, {}
+    bk = get("bookings", int(i))
+    if not bk or not tok_ok("bookings", int(i), token) or bk.get("status") != "dhammaaday":
+        return False, {}
+    w = get("workers", bk.get("wid"))
+    if not w:
+        return False, {}
+    old_n = max(0, int(w.get("n", 0) or 0))
+    old_rating = float(w.get("rating", 0) or 0)
+    new_n = old_n + 1
+    w["rating"] = round(((old_rating * old_n) + float(score)) / new_n, 2)
+    w["n"] = new_n
+    bk["status"] = "la qiimeeyay"
+    put("workers", w); put("bookings", bk)
+    return True, {"rating": w["rating"], "n": w["n"], "status": bk["status"]}
+
 def remove(c, i):
     with lock:
         db.execute("delete from docs where c=? and id=?", (c, str(i)))
@@ -196,7 +248,7 @@ def remove(c, i):
         db.execute("delete from tokens where c=? and id=?", (c, str(i))); db.commit()
 
 EDIT = {"workers": {"name": str, "skill": str, "level": int, "status": str},
-        "jobs": {"title": str, "org": str, "area": str, "sched": str, "d": str, "n": int}}
+        "jobs": {"title": str, "org": str, "area": str, "sched": str, "d": str, "n": int, "status": str}}
 def admin_edit(c, i, fields):
     it = get(c, i)
     if c not in EDIT or not it or not isinstance(fields, dict): return False
@@ -210,20 +262,10 @@ def admin_edit(c, i, fields):
         it[k] = v
     put(c, it); return True
 
-def chat(msgs, lang):
-    clean = []
-    for m in (msgs if isinstance(msgs, list) else [])[-8:]:
-        if isinstance(m, dict) and m.get("role") in ("user", "assistant") and isinstance(m.get("content"), str) and m["content"].strip():
-            clean.append({"role": m["role"], "content": m["content"][:500]})
-    while clean and clean[0]["role"] != "user": clean.pop(0)
-    if not clean or clean[-1]["role"] != "user": return None
-    body = json.dumps({"model": AI_MODEL, "max_tokens": 400, "messages": clean,
-                       "system": SYSTEM + "\nUser interface language code: " + str(lang)[:5]}).encode()
-    req = urllib.request.Request(AI_BASE + "/v1/messages", body, {"x-api-key": AI_KEY, "anthropic-version": "2023-06-01", "content-type": "application/json"})
-    r = json.loads(urllib.request.urlopen(req, timeout=25).read())
-    return "".join(b.get("text", "") for b in r.get("content", []) if b.get("type") == "text").strip() or None
-
 def seed_db():
+    # seed.json contains demonstration records and must never populate production databases.
+    if IS_PRODUCTION:
+        return
     p = os.path.join(ROOT, "seed.json")
     if count("workers") == 0 and count("jobs") == 0 and os.path.exists(p):
         d = json.load(open(p, encoding="utf8"))
@@ -247,11 +289,16 @@ class H(BaseHTTPRequestHandler):
         self.send_response(code)
         self.send_header("Content-Type", ct); self.send_header("Content-Length", str(len(b)))
         self.send_header("Cache-Control", cache); self.send_header("X-Content-Type-Options", "nosniff")
-        self.send_header("Referrer-Policy", "same-origin"); self.end_headers(); self.wfile.write(b)
+        self.send_header("Referrer-Policy", "strict-origin-when-cross-origin")
+        self.send_header("X-Frame-Options", "DENY")
+        self.send_header("Permissions-Policy", "camera=(), microphone=()")
+        self.end_headers(); self.wfile.write(b)
     def do_GET(self):
         u = urlparse(self.path)
-        if u.path == "/api/state": return self.out(200, state(parse_qs(u.query)))
-        if u.path == "/api/health": return self.out(200, {"ok": True, "otp": OTP_MODE, "ai": bool(AI_KEY)})
+        if u.path == "/api/state":
+            if not allow("s" + self.ip(), 120, 60): return self.out(429, {"error": "slow down"})
+            return self.out(200, state(parse_qs(u.query)))
+        if u.path == "/api/health": return self.out(200, {"ok": True, "otp": OTP_MODE})
         f = STATIC.get(u.path)
         if not f or not os.path.exists(os.path.join(FRONT, f)): return self.out(404, {"error": "not found"})
         ext = os.path.splitext(f)[1]
@@ -280,15 +327,13 @@ class H(BaseHTTPRequestHandler):
         if u.path == "/api/act":
             if not allow("c" + ip, 60): return self.out(429, {"error": "slow down"})
             ok = act(body); return self.out(200 if ok else 403, {"ok": ok})
-        if u.path == "/api/chat":
-            if not AI_KEY: return self.out(503, {"error": "ai not configured"})
-            if not allow("h" + ip, 15): return self.out(429, {"error": "slow down"})
-            try: rep = chat(body.get("messages"), body.get("lang", "so"))
-            except Exception: return self.out(502, {"error": "ai failed"})
-            return self.out(200 if rep else 400, {"reply": rep})
         if u.path == "/api/delete":
             if not allow("d" + ip, 20): return self.out(429, {"error": "slow down"})
             ok = delete_account(body); return self.out(200 if ok else 403, {"ok": ok})
+        if u.path == "/api/rate":
+            if not allow("r" + ip, 20): return self.out(429, {"error": "too many"})
+            ok, result = rate_booking(body)
+            return self.out(200 if ok else 403, {"ok": ok, **result})
         if u.path == "/api/admin":
             k = "a" + ip
             if not allow(k, 10, 600): return self.out(429, {"error": "too many attempts"})
@@ -308,6 +353,7 @@ class H(BaseHTTPRequestHandler):
 
 seed_db()
 if __name__ == "__main__":
-    if GENERATED: print("ADMIN_KEY (generated; set ADMIN_KEY env to keep it):", KEY)
-    print("OTP mode:", OTP_MODE, "| Shaqo on http://0.0.0.0:%d" % PORT)
+    if GENERATED and not IS_PRODUCTION: print("ADMIN_KEY (development only; set ADMIN_KEY env to keep it):", KEY)
+    print("Environment:", "production" if IS_PRODUCTION else "development", "| OTP mode:", OTP_MODE,
+          "| Shaqo on http://0.0.0.0:%d" % PORT)
     ThreadingHTTPServer(("0.0.0.0", PORT), H).serve_forever()
