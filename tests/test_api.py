@@ -1,9 +1,21 @@
 """API tests (stdlib only). Run: python3 tests/test_api.py"""
-import json, os, subprocess, sys, tempfile, time, urllib.request as u
+import json, os, subprocess, sys, tempfile, time, threading, urllib.request as u
+from http.server import HTTPServer, BaseHTTPRequestHandler
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); PORT = 8097; B = "http://127.0.0.1:%d" % PORT; KEY = "test-admin-key-123"
 db = os.path.join(tempfile.mkdtemp(), "t.db")
 srv = subprocess.Popen([sys.executable, os.path.join(ROOT, "backend", "server.py")], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
                        env={**os.environ, "PORT": str(PORT), "DB_PATH": db, "ADMIN_KEY": KEY, "OTP_MODE": "dev"})
+seen = []
+class Mock(BaseHTTPRequestHandler):                      # stands in for the Anthropic API
+    def log_message(self, *a): pass
+    def do_POST(self):
+        seen.append((dict(self.headers), json.loads(self.rfile.read(int(self.headers["Content-Length"])))))
+        b = json.dumps({"content": [{"type": "text", "text": "mock reply"}]}).encode()
+        self.send_response(200); self.send_header("Content-Length", str(len(b))); self.end_headers(); self.wfile.write(b)
+mock = HTTPServer(("127.0.0.1", 8094), Mock); threading.Thread(target=mock.serve_forever, daemon=True).start()
+srv.terminate(); srv.wait()
+srv = subprocess.Popen([sys.executable, os.path.join(ROOT, "backend", "server.py")], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                       env={**os.environ, "PORT": str(PORT), "DB_PATH": db, "ADMIN_KEY": KEY, "OTP_MODE": "dev", "ANTHROPIC_API_KEY": "k-test", "ANTHROPIC_BASE": "http://127.0.0.1:8094"})
 time.sleep(1.5); fails = []
 def post(p, b):
     r = u.Request(B + p, json.dumps(b).encode(), {"Content-Type": "application/json"})
@@ -16,6 +28,13 @@ def check(name, ok):
     print(("PASS " if ok else "FAIL ") + name)
     if not ok: fails.append(name)
 try:
+    check("health reports ai=true", get("/api/health").get("ai") is True)
+    msgs = [{"role": "user" if i % 2 == 0 else "assistant", "content": "x" * 700} for i in range(12)] + [{"role": "user", "content": "Sidee isu diiwaangeliyaa?"}]
+    c, r = post("/api/chat", {"messages": msgs, "lang": "so"})
+    h, b = seen[-1]
+    check("chat proxies to AI and returns reply", c == 200 and r["reply"] == "mock reply")
+    check("chat sends key server-side, trims history/length", {k.lower(): v for k, v in h.items()}.get("x-api-key") == "k-test" and len(b["messages"]) <= 8 and all(len(m["content"]) <= 500 for m in b["messages"]) and b["messages"][0]["role"] == "user" and "Shaqo" in b["system"])
+    check("chat rejects empty / assistant-last", post("/api/chat", {"messages": [{"role": "assistant", "content": "hi"}]})[0] == 400)
     s = get("/api/state"); check("server self-seeds demo data", len(s["workers"]) >= 10 and len(s["jobs"]) >= 1)
     check("frontend served", b"<title>" in u.urlopen(B + "/").read())
     check("public workers have no phone/priv", all("phone" not in w and "priv" not in w for w in s["workers"]))

@@ -23,6 +23,13 @@ GENERATED = not os.environ.get("ADMIN_KEY")
 KEY = os.environ.get("ADMIN_KEY") or secrets.token_urlsafe(9)
 AT_USER, AT_KEY, AT_FROM = os.environ.get("AT_USERNAME"), os.environ.get("AT_API_KEY"), os.environ.get("AT_SENDER")
 OTP_MODE = os.environ.get("OTP_MODE") or ("sms" if AT_USER and AT_KEY else "dev")
+AI_KEY = os.environ.get("ANTHROPIC_API_KEY")
+AI_MODEL = os.environ.get("CHAT_MODEL", "claude-haiku-5-5")
+AI_BASE = os.environ.get("ANTHROPIC_BASE", "https://api.anthropic.com")
+SYSTEM = """You are the help assistant of "Shaqo", a jobs and skills marketplace app for East Africa (Somalia, Kenya, Ethiopia, Djibouti, Tanzania, Uganda).
+Answer ONLY questions about using Shaqo, briefly (max ~80 words), in the user's language (Somali, English, Kiswahili, French or Amharic).
+Facts: Job seekers use "Dalab shaqo" to register (phone + OTP code, photo, skill, area, days/hours, ID or a guarantor, consent). Registration is free. Employers/people use "Raadi" to find workers, "Fiiri & dalbo" to send a request (date, place, own name + phone); the worker accepts or declines from the Inbox in "Dalabyo", and only then the worker's phone is shown. "Dalab shaqaale" posts a job; job seekers apply from "Shaqooyin". The price of work is a private agreement between the two sides; the app shows no prices and takes no payment. Levels: 1 basic, 2 guarantor, 3 ID + certificate. Regulated professions (health, engineering) need certificate + licence and admin approval before they appear. "Dhiig" tab: register as blood donor or search donors by blood type. SOS button alerts the admin; in real danger contact local emergency services first. ID, certificates, guarantor, health and substance-use answers are private (admin only); users can delete their account in "Dalabyo". Languages: Somali, English, Kiswahili, Francais, Amharic. Installable as an app (Install / Add to Home Screen). Creator: Abdullahi M. Kulane, +252615128202.
+Never invent features, prices or legal/medical advice. If you do not know, say so and give the creator's contact. Never ask for passwords, ID numbers or keys."""
 LIC = {"Caafimaad", "Engineer"}
 COLL = {"workers", "jobs", "donors", "bookings", "apps", "sos", "reqs"}
 RANK = {"sugaya": 0, "aqbalay": 1, "socda": 2, "dhammaaday": 3, "la qiimeeyay": 4}
@@ -203,6 +210,19 @@ def admin_edit(c, i, fields):
         it[k] = v
     put(c, it); return True
 
+def chat(msgs, lang):
+    clean = []
+    for m in (msgs if isinstance(msgs, list) else [])[-8:]:
+        if isinstance(m, dict) and m.get("role") in ("user", "assistant") and isinstance(m.get("content"), str) and m["content"].strip():
+            clean.append({"role": m["role"], "content": m["content"][:500]})
+    while clean and clean[0]["role"] != "user": clean.pop(0)
+    if not clean or clean[-1]["role"] != "user": return None
+    body = json.dumps({"model": AI_MODEL, "max_tokens": 400, "messages": clean,
+                       "system": SYSTEM + "\nUser interface language code: " + str(lang)[:5]}).encode()
+    req = urllib.request.Request(AI_BASE + "/v1/messages", body, {"x-api-key": AI_KEY, "anthropic-version": "2023-06-01", "content-type": "application/json"})
+    r = json.loads(urllib.request.urlopen(req, timeout=25).read())
+    return "".join(b.get("text", "") for b in r.get("content", []) if b.get("type") == "text").strip() or None
+
 def seed_db():
     p = os.path.join(ROOT, "seed.json")
     if count("workers") == 0 and count("jobs") == 0 and os.path.exists(p):
@@ -231,7 +251,7 @@ class H(BaseHTTPRequestHandler):
     def do_GET(self):
         u = urlparse(self.path)
         if u.path == "/api/state": return self.out(200, state(parse_qs(u.query)))
-        if u.path == "/api/health": return self.out(200, {"ok": True, "otp": OTP_MODE})
+        if u.path == "/api/health": return self.out(200, {"ok": True, "otp": OTP_MODE, "ai": bool(AI_KEY)})
         f = STATIC.get(u.path)
         if not f or not os.path.exists(os.path.join(FRONT, f)): return self.out(404, {"error": "not found"})
         ext = os.path.splitext(f)[1]
@@ -260,6 +280,12 @@ class H(BaseHTTPRequestHandler):
         if u.path == "/api/act":
             if not allow("c" + ip, 60): return self.out(429, {"error": "slow down"})
             ok = act(body); return self.out(200 if ok else 403, {"ok": ok})
+        if u.path == "/api/chat":
+            if not AI_KEY: return self.out(503, {"error": "ai not configured"})
+            if not allow("h" + ip, 15): return self.out(429, {"error": "slow down"})
+            try: rep = chat(body.get("messages"), body.get("lang", "so"))
+            except Exception: return self.out(502, {"error": "ai failed"})
+            return self.out(200 if rep else 400, {"reply": rep})
         if u.path == "/api/delete":
             if not allow("d" + ip, 20): return self.out(429, {"error": "slow down"})
             ok = delete_account(body); return self.out(200 if ok else 403, {"ok": ok})
